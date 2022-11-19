@@ -35,7 +35,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' =>['required', 'string', 'min:3', 'max:255']
+        ]);
     }
 
     /**
