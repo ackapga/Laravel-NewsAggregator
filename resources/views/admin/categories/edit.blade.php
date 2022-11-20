@@ -14,7 +14,7 @@
             @endforeach
         @endif
 
-        <form method="post" action="{{ route('#') }}">
+        <form method="post" {{--action="{{ route('#') }}--}}">
 
             @csrf
 
