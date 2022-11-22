@@ -13,15 +13,17 @@ class Category extends Model
 
     protected $table = 'categories';
 
-    protected static array $selectedFiled = ['id', 'title', 'description', 'created_at'];
+    public static array $selectedFiled = [
+        'id',
+        'title',
+        'description',
+        'created_at',
+        'updated_at',
+    ];
 
-    public function getCategories(): Collection
-    {
-        return DB::table($this->table)->get(self::$selectedFiled);
-    }
+    protected $fillable = [
+        'title',
+        'description',
+    ];
 
-    public function getCategoriesById(int $id): ?object
-    {
-        return DB::table($this->table)->find($id, self::$selectedFiled);
-    }
 }

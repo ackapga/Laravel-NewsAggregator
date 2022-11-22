@@ -7,9 +7,12 @@
         <h1 class="h2">Список Новостей</h1>
     </div>
 
-    <a href="{{ route('admin.news.create') }}" class="btn btn-primary"> Добавить Новость</a><br><br>
+    <a href="{{ route('admin.news.create') }}" class="btn btn-primary">Добавить Новость</a><br><br>
 
     <div class="table-responsive">
+
+        @include('inc.message')
+
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -32,9 +35,11 @@
                     <td>{{ $news->status }}</td>
                     <td>{{ $news->created_at}}</td>
                     <td>
-                        <a href="{{ route('admin.news.edit', ['news' => $news->id])}}" class="btn btn-primary btn btn-sm">Редактировать</a>
+                        <a href="{{ route('admin.news.edit', ['news' => $news->id])}}"
+                           class="btn btn-primary btn btn-sm">Редактировать</a>
                         &nbsp;
-                        <a href="" class="btn btn-danger btn-sm">Удалить</a>
+                        <a href=""
+                           class="btn btn-danger btn-sm">Удалить</a>
                     </td>
                 </tr>
             @empty

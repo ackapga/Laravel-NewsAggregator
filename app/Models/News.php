@@ -17,15 +17,24 @@ class News extends Model
 
     protected $table = 'news';
 
-    protected static array $selectedFiled = ['id', 'category_id', 'title', 'author', 'status', 'image', 'description', 'created_at'];
+    public static array $selectedFiled = [
+        'id',
+        'category_id',
+        'title',
+        'author',
+        'status',
+        'image',
+        'description',
+        'created_at',
+        'updated_at'
+    ];
 
-    public function getNews(): Collection
-    {
-        return DB::table($this->table)->get(self::$selectedFiled);
-    }
-
-    public function getNewsById(int $id): ?object
-    {
-        return DB::table($this->table)->find($id, self::$selectedFiled);
-    }
+    protected $fillable = [
+        'category_id',
+        'title',
+        'author',
+        'status',
+        'image',
+        'description',
+    ];
 }

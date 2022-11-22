@@ -14,20 +14,22 @@
             @endforeach
         @endif
 
-        <form method="post" {{--action="{{ route('#') }}--}}">
+        <form method="post" action="{{ route('admin.categories.update', ['category' => $category]) }}">
 
             @csrf
 
+            @method('put')
+
             <div class="form-group">
                 <lable for="title">Заголовок</lable>
-                <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
+                <input type="text" class="form-control" name="title" id="title" value="{{ $category->title }}">
             </div>
 
             <br>
 
             <div class="form-group">
                 <lable for="description">Описание</lable>
-                <textarea class="form-control" name="description" id="description">{!! old('description') !!}</textarea>
+                <textarea class="form-control" name="description" id="description">{!! $category->description !!}</textarea>
             </div>
 
             <br>
