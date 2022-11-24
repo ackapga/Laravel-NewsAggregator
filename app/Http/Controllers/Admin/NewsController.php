@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\News;
+use App\Queries\NewsQueryBuilder;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,14 +15,14 @@ use Illuminate\Http\Request;
 class NewsController extends Controller
 {
     /**
+     * @param NewsQueryBuilder $builder
      * @return View|Factory|Application
      */
-    public function index(): View|Factory|Application
+    public function index(NewsQueryBuilder $builder): View|Factory|Application
     {
         $categories = Category::query()->select(Category::$selectedFiled)->get();
-        $news = News::query()->select(News::$selectedFiled)->get();
         return view('admin.news.index', [
-            'newsList' => $news,
+            'newsList' => $builder->getNews(),
             'categories' => $categories,
         ]);
     }
@@ -39,15 +40,18 @@ class NewsController extends Controller
 
     /**
      * @param Request $request
+     * @param NewsQueryBuilder $builder
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
-    {
+    public function store(
+        Request $request,
+        NewsQueryBuilder $builder
+    ): RedirectResponse {
         $request->validate([
             'title' => ['required', 'string', 'min:3', 'max:255']
         ]);
 
-        $news = new News(
+        $news = $builder->create(
             $request->only([
                 'category_id',
                 'title',
@@ -58,7 +62,7 @@ class NewsController extends Controller
             ])
         );
 
-        if ($news->save()) {
+        if ($news) {
             return redirect()->route('admin.news.index')
                 ->with('success', 'Новость успешно добавленная!');
         }
@@ -81,18 +85,22 @@ class NewsController extends Controller
     /**
      * @param Request $request
      * @param News $news
+     * @param NewsQueryBuilder $builder
      * @return RedirectResponse
      */
-    public function update(Request $request, News $news): RedirectResponse
-    {
-        $news->category_id = $request->input('category_id');
-        $news->title = $request->input('title');
-        $news->author = $request->input('author');
-        $news->status = $request->input('status');
-        $news->image = $request->input('image');
-        $news->description = $request->input('description');
-
-        if ($news->save()) {
+    public function update(
+        Request          $request,
+        News             $news,
+        NewsQueryBuilder $builder
+    ): RedirectResponse {
+        if ($builder->update($news, $request->only([
+            'category_id',
+            'title',
+            'author',
+            'status',
+            'image',
+            'description',
+        ]))) {
             return redirect()->route('admin.news.index')
                 ->with('success', 'Новость успешно обновлена!');
         }

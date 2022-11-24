@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Queries\CategoriesQueryBuilder;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -13,11 +14,12 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     /**
-     * @return Application|Factory|View
+     * @param CategoriesQueryBuilder $builder
+     * @return View|Factory|Application
      */
-    public function index(): View|Factory|Application
+    public function index(CategoriesQueryBuilder $builder): View|Factory|Application
     {
-        $categories = Category::query()->select(Category::$selectedFiled)->get();
+        $categories = $builder->getCategories();
         return view('admin.categories.index', [
             'categories' => $categories
         ]);
@@ -33,19 +35,23 @@ class CategoryController extends Controller
 
     /**
      * @param Request $request
+     * @param CategoriesQueryBuilder $builder
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(
+        Request                $request,
+        CategoriesQueryBuilder $builder
+    ): RedirectResponse
     {
         $request->validate([
             'title' => ['required', 'string', 'min:3', 'max:255']
         ]);
 
-        $categories = new Category(
+        $categories = $builder->create(
             $request->only(['title', 'description'])
         );
 
-        if ($categories->save()) {
+        if ($categories) {
             return redirect()->route('admin.categories.index')
                 ->with('success', 'Запись успешно добавленная!');
         }
@@ -66,14 +72,18 @@ class CategoryController extends Controller
     /**
      * @param Request $request
      * @param Category $category
+     * @param CategoriesQueryBuilder $builder
      * @return RedirectResponse
      */
-    public function update(Request $request, Category $category): RedirectResponse
-    {
-        $category->title = $request->input('title');
-        $category->description = $request->input('description');
-
-        if ($category->save()) {
+    public function update(
+        Request                $request,
+        Category               $category,
+        CategoriesQueryBuilder $builder
+    ): RedirectResponse {
+        if ($builder->update($category, $request->only([
+            'title',
+            'description'
+        ]))) {
             return redirect()->route('admin.categories.index')
                 ->with('success', 'Запись успешно обновлена!');
         }
