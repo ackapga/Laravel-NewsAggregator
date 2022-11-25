@@ -22,6 +22,7 @@
                 <th scope="col">Автор</th>
                 <th scope="col">Статус</th>
                 <th scope="col">Дата добавления</th>
+                <th scope="col">Дата обновление</th>
                 <th scope="col">Управление</th>
             </tr>
             </thead>
@@ -34,6 +35,7 @@
                     <td>{{ $news->author }}</td>
                     <td>{{ $news->status }}</td>
                     <td>{{ $news->created_at}}</td>
+                    <td>{{ $news->updated_at}}</td>
                     <td>
                         <a href="{{ route('admin.news.edit', ['news' => $news->id])}}"
                            class="btn btn-primary btn btn-sm">Редактировать</a>
@@ -49,6 +51,9 @@
             @endforelse
             </tbody>
         </table>
+
+        {{ $newsList->links() }}
+
     </div>
 
 @endsection

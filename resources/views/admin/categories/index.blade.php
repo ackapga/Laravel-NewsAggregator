@@ -19,6 +19,7 @@
                 <th scope="col">№</th>
                 <th scope="col">Наименование</th>
                 <th scope="col">Дата добавления</th>
+                <th scope="col">Дата обновление</th>
                 <th scope="col">Управление</th>
             </tr>
             </thead>
@@ -28,6 +29,7 @@
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->title }}</td>
                     <td>{{ $category->created_at }}</td>
+                    <td>{{ $category->updated_at }}</td>
                     <td>
                         <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}"
                            class="btn btn-primary btn btn-sm">Редактировать</a>
@@ -43,6 +45,9 @@
             @endforelse
             </tbody>
         </table>
+
+        {{ $categories->links() }}
+
     </div>
 
 @endsection
