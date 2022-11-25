@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 class News extends Model
 {
@@ -37,4 +36,15 @@ class News extends Model
         'image',
         'description',
     ];
+
+    /**
+     * ScopeStatus
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeStatus(Builder $query): Builder
+    {
+        return $query->where('status', News::ACTIVE)
+            ->orWhere('status', News::DRAFT);
+    }
 }

@@ -26,8 +26,7 @@ final class NewsQueryBuilder
     public function getNewsForList(): Collection|LengthAwarePaginator
     {
         return $this->model
-            ->where('status', News::ACTIVE)
-            ->orWhere('status', News::DRAFT)
+            ->status()
             ->paginate(config('pagination.user.news'));
     }
 
