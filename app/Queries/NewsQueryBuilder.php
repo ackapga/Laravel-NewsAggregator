@@ -20,13 +20,16 @@ final class NewsQueryBuilder
 
     public function getNews(): Collection|LengthAwarePaginator
     {
-        return $this->model->paginate(config('pagination.admin.news'));
+        return $this->model
+            ->with('category')
+            ->paginate(config('pagination.admin.news'));
     }
 
     public function getNewsForList(): Collection|LengthAwarePaginator
     {
         return $this->model
             ->status()
+            ->with('category')
             ->paginate(config('pagination.user.news'));
     }
 

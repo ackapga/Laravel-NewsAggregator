@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\News;
+use App\Queries\CategoriesQueryBuilder;
 use App\Queries\NewsQueryBuilder;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -15,15 +16,13 @@ use Illuminate\Http\Request;
 class NewsController extends Controller
 {
     /**
-     * @param NewsQueryBuilder $builder
+     * @param NewsQueryBuilder $news
      * @return View|Factory|Application
      */
-    public function index(NewsQueryBuilder $builder): View|Factory|Application
+    public function index(NewsQueryBuilder $news): View|Factory|Application
     {
-        $categories = Category::query()->select(Category::$selectedFiled)->get();
         return view('admin.news.index', [
-            'newsList' => $builder->getNews(),
-            'categories' => $categories,
+            'newsList' => $news->getNews(),
         ]);
     }
 

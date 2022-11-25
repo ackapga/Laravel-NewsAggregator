@@ -17,7 +17,8 @@
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">ID_Category</th>
+                <th scope="col">ID Категорий</th>
+                <th scope="col">Название Категорий</th>
                 <th scope="col">Наименование</th>
                 <th scope="col">Автор</th>
                 <th scope="col">Статус</th>
@@ -31,6 +32,7 @@
                 <tr>
                     <td>{{ $news->id }}</td>
                     <td>{{ $news->category_id }}</td>
+                    <td>{{ $news->category->title }}</td>
                     <td>{{ $news->title }}</td>
                     <td>{{ $news->author }}</td>
                     <td>{{ $news->status }}</td>

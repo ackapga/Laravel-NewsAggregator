@@ -16,8 +16,10 @@
                     </svg>
 
                     <div class="card-body">
+                        <small class="text-muted">Категория: {{ $news->category->title }}</small><br>
+                        <small class="text-reset">Название: {{ $news->title }}</small>
                         <p>{!! $news->description !!}</p>
-                        <small class="text-muted">{{ $news->status }}</small>
+                        <small class="text-muted">Статус: {{ $news->status }}</small>
                         <hr>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">

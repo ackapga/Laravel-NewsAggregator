@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class News extends Model
 {
@@ -16,18 +17,6 @@ class News extends Model
 
     protected $table = 'news';
 
-    public static array $selectedFiled = [
-        'id',
-        'category_id',
-        'title',
-        'author',
-        'status',
-        'image',
-        'description',
-        'created_at',
-        'updated_at'
-    ];
-
     protected $fillable = [
         'category_id',
         'title',
@@ -36,6 +25,14 @@ class News extends Model
         'image',
         'description',
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     /**
      * ScopeStatus

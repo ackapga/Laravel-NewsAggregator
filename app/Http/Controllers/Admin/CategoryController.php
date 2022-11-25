@@ -19,9 +19,8 @@ class CategoryController extends Controller
      */
     public function index(CategoriesQueryBuilder $builder): View|Factory|Application
     {
-        $categories = $builder->getCategories();
         return view('admin.categories.index', [
-            'categories' => $categories
+            'categories' => $builder->getCategories()
         ]);
     }
 
@@ -79,7 +78,8 @@ class CategoryController extends Controller
         Request                $request,
         Category               $category,
         CategoriesQueryBuilder $builder
-    ): RedirectResponse {
+    ): RedirectResponse
+    {
         if ($builder->update($category, $request->only([
             'title',
             'description'
