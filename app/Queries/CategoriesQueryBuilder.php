@@ -6,6 +6,7 @@ namespace App\Queries;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 final class CategoriesQueryBuilder
@@ -17,9 +18,9 @@ final class CategoriesQueryBuilder
         $this->model = Category::query();
     }
 
-    public function getCategories(): Collection
+    public function getCategories(): Collection|LengthAwarePaginator
     {
-        return $this->model->get();
+        return $this->model->paginate(config('pagination.admin.categories'));
     }
 
     public function create(array $date): Category|bool
