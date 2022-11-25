@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class News extends Model
 {
@@ -17,15 +17,31 @@ class News extends Model
 
     protected $table = 'news';
 
-    protected static array $selectedFiled = ['id', 'category_id', 'title', 'author', 'status', 'image', 'description', 'created_at'];
+    protected $fillable = [
+        'category_id',
+        'title',
+        'author',
+        'status',
+        'image',
+        'description',
+    ];
 
-    public function getNews(): Collection
+    /**
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
     {
-        return DB::table($this->table)->get(self::$selectedFiled);
+        return $this->belongsTo(Category::class);
     }
 
-    public function getNewsById(int $id): ?object
+    /**
+     * ScopeStatus
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeStatus(Builder $query): Builder
     {
-        return DB::table($this->table)->find($id, self::$selectedFiled);
+        return $query->where('status', News::ACTIVE)
+            ->orWhere('status', News::DRAFT);
     }
 }

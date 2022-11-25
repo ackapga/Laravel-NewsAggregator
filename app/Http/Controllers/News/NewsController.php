@@ -4,13 +4,14 @@ namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
 use App\Models\News;
+use App\Queries\NewsQueryBuilder;
 use function view;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(NewsQueryBuilder $builder)
     {
-        $news = app(News::class)->getNews();
+        $news = $builder->getNewsForList();
        return view('news.index', ['newsList' => $news]);
     }
 

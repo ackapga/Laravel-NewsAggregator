@@ -10,12 +10,16 @@
     <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Добавить Категорию</a><br><br>
 
     <div class="table-responsive">
+
+        @include('inc.message')
+
         <table class="table table-striped table-sm">
             <thead>
             <tr>
                 <th scope="col">№</th>
                 <th scope="col">Наименование</th>
                 <th scope="col">Дата добавления</th>
+                <th scope="col">Дата обновление</th>
                 <th scope="col">Управление</th>
             </tr>
             </thead>
@@ -25,10 +29,13 @@
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->title }}</td>
                     <td>{{ $category->created_at }}</td>
+                    <td>{{ $category->updated_at }}</td>
                     <td>
-                        <a href="{{ route('admin.categories.edit', ['category' => $category->id])}}" class="btn btn-primary btn btn-sm">Редактировать</a>
+                        <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}"
+                           class="btn btn-primary btn btn-sm">Редактировать</a>
                         &nbsp;
-                        <a href="" class="btn btn-danger btn-sm">Удалить</a>
+                        <a href=""
+                           class="btn btn-danger btn-sm">Удалить</a>
                     </td>
                 </tr>
             @empty
@@ -38,6 +45,9 @@
             @endforelse
             </tbody>
         </table>
+
+        {{ $categories->links() }}
+
     </div>
 
 @endsection

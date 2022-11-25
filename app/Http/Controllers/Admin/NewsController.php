@@ -3,84 +3,112 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\News;
+use App\Queries\CategoriesQueryBuilder;
+use App\Queries\NewsQueryBuilder;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param NewsQueryBuilder $news
+     * @return View|Factory|Application
      */
-    public function index()
+    public function index(NewsQueryBuilder $news): View|Factory|Application
     {
-        $news = app(News::class)->getNews();
-        return view('admin.news.index', ['newsList' => $news]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.news.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' =>['required', 'string', 'min:3', 'max:255']
+        return view('admin.news.index', [
+            'newsList' => $news->getNews(),
         ]);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function show($id)
+    public function create(): View|Factory|Application
     {
-        //
+        $categories = Category::all();
+        return view('admin.news.create', [
+            'categories' => $categories
+        ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param NewsQueryBuilder $builder
+     * @return RedirectResponse
      */
-    public function edit($id)
-    {
-        return view('admin.news.edit');
+    public function store(
+        Request $request,
+        NewsQueryBuilder $builder
+    ): RedirectResponse {
+        $request->validate([
+            'title' => ['required', 'string', 'min:3', 'max:255']
+        ]);
+
+        $news = $builder->create(
+            $request->only([
+                'category_id',
+                'title',
+                'author',
+                'status',
+                'image',
+                'description',
+            ])
+        );
+
+        if ($news) {
+            return redirect()->route('admin.news.index')
+                ->with('success', 'Новость успешно добавленная!');
+        }
+        return back()->with('error', 'Не удалось добавить новость!');
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param News $news
+     * @return View|Factory|Application
      */
-    public function update(Request $request, $id)
+    public function edit(News $news): View|Factory|Application
     {
-        //
+        $categories = Category::all();
+        return view('admin.news.edit', [
+            'news' => $news,
+            'categories' => $categories,
+        ]);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param News $news
+     * @param NewsQueryBuilder $builder
+     * @return RedirectResponse
+     */
+    public function update(
+        Request          $request,
+        News             $news,
+        NewsQueryBuilder $builder
+    ): RedirectResponse {
+        if ($builder->update($news, $request->only([
+            'category_id',
+            'title',
+            'author',
+            'status',
+            'image',
+            'description',
+        ]))) {
+            return redirect()->route('admin.news.index')
+                ->with('success', 'Новость успешно обновлена!');
+        }
+        return back()->with('error', 'Не удалось обновить новость!');
+    }
+
+    /**
+     * @param $id
+     * @return void
      */
     public function destroy($id)
     {
