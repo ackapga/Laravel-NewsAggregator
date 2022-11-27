@@ -79,6 +79,7 @@
 <script src="{{ asset('assets/feather.min.js') }}"></script>
 <script src="{{ asset('assets/Chart.min.js') }}"></script>
 <script src="{{ asset('assets/dashboard.js') }}"></script>
+@stack('js')
 </body>
 </html>
 
