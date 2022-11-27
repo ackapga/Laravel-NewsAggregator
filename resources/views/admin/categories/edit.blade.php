@@ -8,11 +8,7 @@
             <h1 class="h2">Редактировать Категорий</h1>
         </div>
 
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                @include('inc.message', ['message' => $error])
-            @endforeach
-        @endif
+        @include('inc.message')
 
         <form method="post" action="{{ route('admin.categories.update', ['category' => $category]) }}">
 
@@ -23,6 +19,7 @@
             <div class="form-group">
                 <lable for="title">Заголовок</lable>
                 <input type="text" class="form-control" name="title" id="title" value="{{ $category->title }}">
+                @error('title') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <br>
@@ -30,6 +27,7 @@
             <div class="form-group">
                 <lable for="description">Описание</lable>
                 <textarea class="form-control" name="description" id="description">{!! $category->description !!}</textarea>
+                @error('description') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <br>

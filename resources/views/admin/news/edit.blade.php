@@ -8,11 +8,7 @@
             <h1 class="h2">Редактировать Новость</h1>
         </div>
 
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                @include('inc.message', ['message' => $error])
-            @endforeach
-        @endif
+        @include('inc.message')
 
         <form method="post" action="{{ route('admin.news.update', ['news' => $news]) }}">
 
@@ -25,19 +21,23 @@
                 <select class="form-control" name="category_id" id="category_id">
                     <option value="0">Выбрать Категорию</option>
                     @foreach($categories as $category)
-                        <option value="{{ $category->id }}"@if($news->category_id === $category->id) selected @endif>{{ $category->title }}</option>
+                        <option value="{{ $category->id }}"
+                                @if($news->category_id === $category->id) selected @endif>{{ $category->title }}</option>
                     @endforeach
                 </select>
+                @error('category_id') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
                 <lable for="title">Наименование</lable>
                 <input type="text" class="form-control" name="title" id="title" value="{{ $news->title }}">
+                @error('title') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
                 <lable for="author">Автор</lable>
                 <input type="text" class="form-control" name="author" id="author" value="{{ $news->author }}">
+                @error('author') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
@@ -57,6 +57,7 @@
             <div class="form-group">
                 <lable for="description">Описание</lable>
                 <textarea class="form-control" name="description" id="description">{!! $news->description !!}</textarea>
+                @error('description') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <br>
