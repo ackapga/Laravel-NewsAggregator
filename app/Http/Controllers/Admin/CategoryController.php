@@ -85,11 +85,13 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param $id
-     * @return void
+     * @param Category $category
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Category $category): RedirectResponse
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index')
+            ->with('success', __('messages.admin.categories.destroy.success'));
     }
 }

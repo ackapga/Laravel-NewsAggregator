@@ -30,12 +30,15 @@
                     <td>{{ $category->title }}</td>
                     <td>{{ $category->created_at }}</td>
                     <td>{{ $category->updated_at }}</td>
-                    <td>
-                        <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}"
-                           class="btn btn-primary btn btn-sm">Редактировать</a>
-                        &nbsp;
-                        <a href=""
-                           class="btn btn-danger btn-sm">Удалить</a>
+                    <th scope="col" style="display: flex">
+                        <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}">
+                            <button type="button" class="btn btn-primary btn-sm">Редактор</button>
+                        </a> &nbsp;
+                        <form method="post" action={{ route('admin.categories.destroy', [$category->id]) }}>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                        </form>
                     </td>
                 </tr>
             @empty

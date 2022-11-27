@@ -91,11 +91,13 @@ class NewsController extends Controller
     }
 
     /**
-     * @param $id
-     * @return void
+     * @param News $news
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(News $news): RedirectResponse
     {
-        //
+        $news->delete();
+        return redirect()->route('admin.news.index')
+            ->with('success', __('messages.admin.news.destroy.success'));
     }
 }
