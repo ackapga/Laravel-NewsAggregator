@@ -33,6 +33,11 @@ final class NewsQueryBuilder
             ->paginate(config('pagination.user.news'));
     }
 
+    public function getNewsById(int $id): ?object
+    {
+        return $this->model->findOrFail($id);
+    }
+
     public function create(array $date): News|bool
     {
         return News::create($date);

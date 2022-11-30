@@ -17,9 +17,9 @@ class NewsController extends Controller
        return view('news.index', ['newsList' => $news]);
     }
 
-    public function show(int $id): Factory|View|Application
+    public function show(NewsQueryBuilder $builder, $id): Factory|View|Application
     {
-        $news = app(News::class)->getNewsById($id);
+        $news = $builder->getNewsById($id);
         return view('news.show', ['news' => $news]);
     }
 

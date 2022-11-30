@@ -5,7 +5,7 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <span class="form-control form-control-dark w-100 rounded-0 border-0">&nbsp; Администратор: (скоро будет имя Админа) </span>
+    <span class="form-control form-control-dark w-100 rounded-0 border-0">&nbsp; Администратор: {{ Auth::user()->name }} </span>
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
             <a class="nav-link px-3" href="/">Выход</a>
