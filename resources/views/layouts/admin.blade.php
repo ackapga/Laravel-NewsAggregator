@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard Template · Bootstrap v5.2</title>
+    <title>Кабинет {{ Auth::user()->name }}</title>
     <link href="{{ asset('assets/bootstrap.min.css') }}" rel="stylesheet">
     <style>
         .bd-placeholder-img {
@@ -79,6 +79,7 @@
 <script src="{{ asset('assets/feather.min.js') }}"></script>
 <script src="{{ asset('assets/Chart.min.js') }}"></script>
 <script src="{{ asset('assets/dashboard.js') }}"></script>
+@stack('js')
 </body>
 </html>
 

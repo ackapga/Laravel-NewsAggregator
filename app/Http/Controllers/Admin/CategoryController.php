@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Categories\CreateRequest;
+use App\Http\Requests\Categories\EditRequest;
 use App\Models\Category;
 use App\Queries\CategoriesQueryBuilder;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -33,28 +34,24 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param CreateRequest $request
      * @param CategoriesQueryBuilder $builder
      * @return RedirectResponse
      */
     public function store(
-        Request                $request,
+        CreateRequest          $request,
         CategoriesQueryBuilder $builder
     ): RedirectResponse
     {
-        $request->validate([
-            'title' => ['required', 'string', 'min:3', 'max:255']
-        ]);
-
         $categories = $builder->create(
-            $request->only(['title', 'description'])
+            $request->validated()
         );
 
         if ($categories) {
             return redirect()->route('admin.categories.index')
-                ->with('success', 'Запись успешно добавленная!');
+                ->with('success', __('messages.admin.categories.store.success'));
         }
-        return back()->with('error', 'Не удалось добавить запись!');
+        return back()->with('error', __('messages.admin.categories.store.error'));
     }
 
     /**
@@ -69,33 +66,32 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param EditRequest $request
      * @param Category $category
      * @param CategoriesQueryBuilder $builder
      * @return RedirectResponse
      */
     public function update(
-        Request                $request,
+        EditRequest            $request,
         Category               $category,
         CategoriesQueryBuilder $builder
     ): RedirectResponse
     {
-        if ($builder->update($category, $request->only([
-            'title',
-            'description'
-        ]))) {
+        if ($builder->update($category, $request->validated())) {
             return redirect()->route('admin.categories.index')
-                ->with('success', 'Запись успешно обновлена!');
+                ->with('success', __('messages.admin.categories.update.success'));
         }
-        return back()->with('error', 'Не удалось обновить запись!');
+        return back()->with('error', __('messages.admin.categories.update.error'));
     }
 
     /**
-     * @param $id
-     * @return void
+     * @param Category $category
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Category $category): RedirectResponse
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index')
+            ->with('success', __('messages.admin.categories.destroy.success'));
     }
 }

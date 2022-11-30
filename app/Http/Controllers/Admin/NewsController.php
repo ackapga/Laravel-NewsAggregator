@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\News\CreateRequest;
+use App\Http\Requests\News\EditRequest;
 use App\Models\Category;
 use App\Models\News;
-use App\Queries\CategoriesQueryBuilder;
 use App\Queries\NewsQueryBuilder;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
@@ -38,34 +38,24 @@ class NewsController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param CreateRequest $request
      * @param NewsQueryBuilder $builder
      * @return RedirectResponse
      */
     public function store(
-        Request $request,
+        CreateRequest    $request,
         NewsQueryBuilder $builder
-    ): RedirectResponse {
-        $request->validate([
-            'title' => ['required', 'string', 'min:3', 'max:255']
-        ]);
-
+    ): RedirectResponse
+    {
         $news = $builder->create(
-            $request->only([
-                'category_id',
-                'title',
-                'author',
-                'status',
-                'image',
-                'description',
-            ])
+            $request->validated()
         );
 
         if ($news) {
             return redirect()->route('admin.news.index')
-                ->with('success', 'Новость успешно добавленная!');
+                ->with('success', __('messages.admin.news.store.success'));
         }
-        return back()->with('error', 'Не удалось добавить новость!');
+        return back()->with('error', __('messages.admin.news.store.error'));
     }
 
     /**
@@ -82,36 +72,32 @@ class NewsController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param EditRequest $request
      * @param News $news
      * @param NewsQueryBuilder $builder
      * @return RedirectResponse
      */
     public function update(
-        Request          $request,
+        EditRequest      $request,
         News             $news,
         NewsQueryBuilder $builder
-    ): RedirectResponse {
-        if ($builder->update($news, $request->only([
-            'category_id',
-            'title',
-            'author',
-            'status',
-            'image',
-            'description',
-        ]))) {
+    ): RedirectResponse
+    {
+        if ($builder->update($news, $request->validated())) {
             return redirect()->route('admin.news.index')
-                ->with('success', 'Новость успешно обновлена!');
+                ->with('success', __('messages.admin.news.update.success'));
         }
-        return back()->with('error', 'Не удалось обновить новость!');
+        return back()->with('error', __('messages.admin.news.update.error'));
     }
 
     /**
-     * @param $id
-     * @return void
+     * @param News $news
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(News $news): RedirectResponse
     {
-        //
+        $news->delete();
+        return redirect()->route('admin.news.index')
+            ->with('success', __('messages.admin.news.destroy.success'));
     }
 }

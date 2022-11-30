@@ -8,11 +8,7 @@
             <h1 class="h2">Добавить Новость</h1>
         </div>
 
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                @include('inc.message', ['message' => $error])
-            @endforeach
-        @endif
+        @include('inc.message')
 
         <form method="post" action="{{ route('admin.news.store') }}">
 
@@ -26,16 +22,19 @@
                         <option value="{{ $category->id }}"@if(old('category_id') === $category->id) selected @endif>{{ $category->title }}</option>
                     @endforeach
                 </select>
+                @error('category_id') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
                 <lable for="title">Наименование</lable>
                 <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
+                @error('title') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
                 <lable for="author">Автор</lable>
                 <input type="text" class="form-control" name="author" id="author" value="{{ old('author') }}">
+                @error('author') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
@@ -55,6 +54,7 @@
             <div class="form-group">
                 <lable for="description">Описание</lable>
                 <textarea class="form-control" name="description" id="description">{!! old('description') !!}</textarea>
+                @error('description') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <br>

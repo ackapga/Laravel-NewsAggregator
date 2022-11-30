@@ -20,18 +20,12 @@
                     Новости
                 </a>
             </li>
-{{--            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="users" class="align-text-bottom"></span>
-                    Customers
-                </a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-                    Reports
+                    <span data-feather="users" class="align-text-bottom"></span>
+                    Пользователи
                 </a>
-            </li>--}}
+            </li>
         </ul>
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">

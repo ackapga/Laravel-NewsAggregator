@@ -8,11 +8,7 @@
             <h1 class="h2">Добавить Категорий</h1>
         </div>
 
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                @include('inc.message', ['message' => $error])
-            @endforeach
-        @endif
+        @include('inc.message')
 
         <form method="post" action="{{ route('admin.categories.store') }}">
 
@@ -21,6 +17,7 @@
             <div class="form-group">
                 <lable for="title">Заголовок</lable>
                 <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
+                @error('title') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <br>
@@ -28,6 +25,7 @@
             <div class="form-group">
                 <lable for="description">Описание</lable>
                 <textarea class="form-control" name="description" id="description">{!! old('description') !!}</textarea>
+                @error('description') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
             <br>

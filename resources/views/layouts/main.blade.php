@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@section('title') :NewsAggregator @show</title>
+    <title>@section('title') NewsAggregator @show</title>
     <link href="{{ asset('assets/bootstrap.min.css') }}" rel="stylesheet">
     <style>
         .bd-placeholder-img {
@@ -57,22 +56,36 @@
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
+
+        .wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top {
+            flex-grow: 1
+        }
     </style>
 </head>
-
 <body>
-<x-news.header></x-news.header>
-<main>
+<div class="wrapper">
+    <div class="top">
+        <x-news.header></x-news.header>
+        <main>
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-                @yield('content')
-        </div>
+            <div class="album py-5 bg-light">
+                <div class="container">
+                    @yield('content')
+                </div>
+            </div>
+
+        </main>
     </div>
-
-</main>
-<x-news.footer></x-news.footer>
+    <div>
+        <x-news.footer></x-news.footer>
+    </div>
+</div>
 <script src="{{ asset('assets/bootstrap.bundle.min.js') }}"></script>
 </body>
-
 </html>
