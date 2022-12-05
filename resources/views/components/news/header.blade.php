@@ -1,8 +1,13 @@
+<style>
+    .fon:hover {
+        color: #d9d9d9;
+    }
+</style>
 <header>
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
 
-            <a href="/" class="navbar-brand d-flex align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center fon">
                 <strong>&#9776; NewsAggregator</strong>
             </a>
 

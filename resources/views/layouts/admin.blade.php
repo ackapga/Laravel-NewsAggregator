@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Кабинет {{ Auth::user()->name }}</title>
+    <title>ADMIN NewsAggregator</title>
     <link href="{{ asset('assets/bootstrap.min.css') }}" rel="stylesheet">
     <style>
         .bd-placeholder-img {

@@ -13,13 +13,8 @@
                 </p>
                 <div style="display: flex; flex-direction: column; ">
                     <a href="{{ route('news.index') }}" class="btn btn-secondary my-2">Просмотр новостей</a>
-                    <a href="{{ route('admin.index') }}" class="btn btn-primary my-2">Кабинет Админ</a>
-                    <p style="color: gray">
-                        Кабинет Админ доступен только для Администратора. <br>
-                        Если вы нажмете на нее, не являясь Админом <br>
-                        Вас закинет на 404!
-                    </p>
                 </div>
             </div>
+        </div>
     </section>
 @endsection

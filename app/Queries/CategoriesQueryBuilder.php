@@ -20,7 +20,10 @@ final class CategoriesQueryBuilder
 
     public function getCategories(): Collection|LengthAwarePaginator
     {
-        return $this->model->paginate(config('pagination.admin.categories'));
+        return $this->model
+            ->orderBy('id', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(config('pagination.admin.categories'));
     }
 
     public function create(array $date): Category|bool
