@@ -4,11 +4,8 @@
 
 @section('content')
     <style>
-        .back {
+        .back-yellow {
             background: linear-gradient(to top, white, #fcd43b);
-            display: flex;
-            justify-content: space-around;
-            padding: 30px;
         }
 
         .title {
@@ -30,15 +27,60 @@
             background-color: #262626;
             box-shadow: black;
         }
+
+        .img {
+            width: 20vh;
+            border-radius: 100px;
+            box-shadow: 0 0 25px grey;
+            border: 2px solid rgba(255, 255, 164, 0.2);
+        }
+
+        .img_cat {
+            width: 20vh;
+            border-radius: 100px;
+            box-shadow: 0 0 25px grey;
+            border: 2px solid rgba(255, 255, 164, 0.2);
+        }
+
+        .text {
+            text-align: center;
+        }
+
+        .head {
+            border: 1px solid black;
+
+            display: flex;
+            justify-content: space-around;
+            padding: 30px;
+            align-items: center;
+        }
+
     </style>
 
-    <div class="back">
-        <h2 class="title">Welcome {{ Auth::user()->name }} </h2>
+    <div class="back-yellow">
 
-        @if(Auth::user()->is_admin === true)
-            <h5>
-                <a href="{{ route('admin.index') }}" class="href">&#10048; &nbsp;GO TO ADMIN </a>
-            </h5>
-        @endif
+        <div class="head">
+            @if(Auth::user()->avatar)
+                <img class="img" src="{{ Auth::user()->avatar }}" alt="avatar">
+            @else
+                <img class="img_cat" src="https://b3.dd.icdn.ru/m/mink_blue/6/imgsrc.ru_74126546vFm.webp" alt="">
+            @endif
+
+            <div class="text">
+                <h2 class="title">Добро пожаловать </h2>
+                <h2 class="title">{{ Auth::user()->name }} </h2>
+            </div>
+
+            @if(Auth::user()->is_admin === true)
+                <h5 class="h5_text">
+                    <a href="{{ route('admin.index') }}" class="href">&#10048; &nbsp;GO TO ADMIN </a>
+                </h5>
+            @else
+                <h5 class="h5_text">
+                    <a href="/" class="href">&nbsp; NewsAggregator &nbsp;</a>
+                </h5>
+            @endif
+        </div>
+
     </div>
 @endsection

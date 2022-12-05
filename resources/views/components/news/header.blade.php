@@ -2,6 +2,20 @@
     .fon:hover {
         color: #d9d9d9;
     }
+
+    .img_little {
+        width: 40px;
+        margin-right: 10px;
+        border-radius: 25px;
+        border: 1px solid rgba(128, 128, 128, 0.18);
+    }
+
+    .img_cat_little {
+        width: 40px;
+        margin-right: 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(128, 128, 128, 0.18);
+    }
 </style>
 <header>
     <div class="navbar navbar-dark bg-dark shadow-sm">
@@ -29,9 +43,12 @@
 
                 <div style="display: flex">
 
-                    <li>
-                        <img src="" alt="" style="height: 30px; width: 30px; background-color: red; margin-right: 20px; margin-top: 4px; border-radius: 15px">
-                    </li>
+                    @if(Auth::user()->avatar)
+                        <img class="img_little" src="{{ Auth::user()->avatar }}" alt="avatar">
+                    @else
+                        <img class="img_cat_little" src="https://b3.dd.icdn.ru/m/mink_blue/6/imgsrc.ru_74126546vFm.webp" alt="">
+                    @endif
+
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
