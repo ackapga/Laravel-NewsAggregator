@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Account\IndexController as AccountIndexController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\IndexController as IndexControllerAdmin;
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/parser', ParserController::class)->name('parser');
         Route::resource('categories', AdminCategoryController::class);
         Route::resource('news', AdminNewsController::class);
+        Route::resource('users', AdminUserController::class);
     });
 });
 
