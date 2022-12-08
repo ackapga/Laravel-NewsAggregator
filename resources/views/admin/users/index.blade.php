@@ -15,6 +15,7 @@
             <thead>
             <tr>
                 <th scope="col">ID</th>
+                <th scope="col">Откуда</th>
                 <th scope="col">Admin</th>
                 <th scope="col">Имя</th>
                 <th scope="col">Email</th>
@@ -28,6 +29,7 @@
             @forelse($users as $user)
                 <tr>
                     <td>{{ $user->id }}</td>
+                    <td>{{ $user->from }}</td>
                     <td>{{ $user->is_admin }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>

@@ -12,5 +12,5 @@ interface Social
      * @param SocialUser $socialUser
      * @return string
      */
-    public function loginAndGetRedirectUrl(SocialUser $socialUser): string;
+    public function loginOrRegisterIfNull(SocialUser $socialUser): string;
 }

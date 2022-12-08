@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('avatar')
             ->after('is_admin')
             ->nullable();
+            $table->string('from')
+                ->after('id')
+                ->default('Сайт')
+                ->nullable();
         });
     }
 
@@ -29,6 +33,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('avatar');
+            $table->dropColumn('from');
         });
     }
 };

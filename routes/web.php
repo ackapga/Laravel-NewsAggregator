@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\IndexController as IndexControllerAdmin;
 use App\Http\Controllers\Admin\ParserController;
 use App\Http\Controllers\News\NewsController;
-use App\Http\Controllers\SocialProvidersController;
+use App\Http\Controllers\SocialController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -46,10 +46,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/auth/redirect/{driver}', [SocialProvidersController::class, 'redirect'])
+    Route::get('/auth/redirect/{driver}', [SocialController::class, 'redirect'])
         ->where('driver', '\w+')
         ->name('social.auth.redirect');
-    Route::get('/auth/callback/{driver}', [SocialProvidersController::class, 'callback'])
+    Route::get('/auth/callback/{driver}', [SocialController::class, 'callback'])
         ->where('driver', '\w+');
 });
 

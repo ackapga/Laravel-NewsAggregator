@@ -16,6 +16,8 @@
 
             @method('put')
 
+            <h5>Зарегистрировался через: {{ $user->from }}</h5>
+
             <div class="form-group">
                 <lable for="is_admin">Права на Администратора</lable>
                 <select class="form-control" name="is_admin" id="is_admin">
@@ -39,7 +41,7 @@
 
             <div class="form-group">
                 <lable for="password">Пароль</lable>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Новый пароль">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Поменять на Новый пароль">
                 @error('password') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 

@@ -73,7 +73,7 @@
 
             @if(Auth::user()->is_admin === true)
                 <h5 class="h5_text">
-                    <a href="{{ route('admin.index') }}" class="href">&#10048; &nbsp;GO TO ADMIN </a>
+                    <a href="{{ route('admin.index') }}" class="href">&#10048; &nbsp;GO TO ADMIN&nbsp;</a>
                 </h5>
             @else
                 <h5 class="h5_text">

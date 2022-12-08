@@ -11,7 +11,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Contracts\Foundation\Application;
 use Symfony\Component\HttpFoundation\RedirectResponse as SymfonyRedirectResponse;
 
-class SocialProvidersController extends Controller
+class SocialController extends Controller
 {
     public function redirect(string $driver): SymfonyRedirectResponse|RedirectResponse
     {
@@ -21,7 +21,7 @@ class SocialProvidersController extends Controller
     public function callback(string $driver, Social $social): Redirector|Application|RedirectResponse
     {
         return redirect(
-            $social->loginAndGetRedirectUrl(Socialite::driver($driver)->user())
+            $social->loginOrRegisterIfNull(Socialite::driver($driver)->user())
         );
     }
 }

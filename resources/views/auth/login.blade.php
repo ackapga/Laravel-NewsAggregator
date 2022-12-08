@@ -16,8 +16,13 @@
             margin-left: 25px;
         }
 
+        .logo_to:hover {
+            padding: 1px 2px 1px 2px;
+            box-shadow: 0 0 10px rgba(217, 217, 217, 0.29);
+        }
+
         .card_add {
-            background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity))!important;
+            background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
             color: white;
         }
     </style>
@@ -60,7 +65,7 @@
 
                             <a href="{{ route('social.auth.redirect', ['driver' => 'vkontakte']) }}">
                                 <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VK_Compact_Logo_%282021-present%29.svg/2048px-VK_Compact_Logo_%282021-present%29.svg.png"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/VK_Compact_Logo.svg/2048px-VK_Compact_Logo.svg.png"
                                     class="logo_to"
                                     alt="VK">
                             </a>
