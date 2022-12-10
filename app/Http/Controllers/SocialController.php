@@ -20,8 +20,15 @@ class SocialController extends Controller
 
     public function callback(string $driver, Social $social): Redirector|Application|RedirectResponse
     {
-        return redirect(
-            $social->loginOrRegisterIfNull(Socialite::driver($driver)->user())
-        );
+        if ($driver === 'vkontakte') {
+            return redirect(
+                $social->loginOrRegisterIfNullVk(Socialite::driver($driver)->user())
+            );
+        } elseif ($driver === 'github') {
+            return redirect(
+                $social->loginOrRegisterIfNullGitHub(Socialite::driver($driver)->user())
+            );
+        }
+       return dd($driver);
     }
 }

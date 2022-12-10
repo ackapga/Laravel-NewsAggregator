@@ -55,16 +55,28 @@
             align-items: center;
         }
 
+        .center {
+            text-align: center;
+        }
+
+        .textP {
+            margin-top: 15px;
+        }
+
     </style>
 
     <div class="back-yellow">
 
         <div class="head">
-            @if(Auth::user()->avatar)
-                <img class="img" src="{{ Auth::user()->avatar }}" alt="avatar">
-            @else
-                <img class="img_cat" src="https://b3.dd.icdn.ru/m/mink_blue/6/imgsrc.ru_74126546vFm.webp" alt="">
-            @endif
+            <div class="center">
+                @if(Auth::user()->avatar)
+                    <img class="img" src="{{ Auth::user()->avatar }}" alt="avatar">
+                    <p class="title textP">Вход с {{ Auth::user()->from }}</p>
+                @else
+                    <img class="img_cat" src="https://b3.dd.icdn.ru/m/mink_blue/6/imgsrc.ru_74126546vFm.webp" alt="">
+                    <p class="title textP">Вход с Сайта</p>
+                @endif
+            </div>
 
             <div class="text">
                 <h2 class="title">Добро пожаловать </h2>

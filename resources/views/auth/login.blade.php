@@ -49,14 +49,7 @@
                                     alt="Instagram">
                             </a>
 
-                            <a href="#">
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png"
-                                    class="logo_to"
-                                    alt="Telegram">
-                            </a>
-
-                            <a href="#">
+                            <a href="{{ route('social.auth.redirect', ['driver' => 'github']) }}">
                                 <img
                                     src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
                                     class="logo_to"

@@ -12,5 +12,7 @@ interface Social
      * @param SocialUser $socialUser
      * @return string
      */
-    public function loginOrRegisterIfNull(SocialUser $socialUser): string;
+    public function loginOrRegisterIfNullVk(SocialUser $socialUser): string;
+
+    public function loginOrRegisterIfNullGitHub(SocialUser $socialUser): string;
 }

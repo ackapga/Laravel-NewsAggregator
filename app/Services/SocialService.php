@@ -19,17 +19,14 @@ class SocialService implements Social
      * @return string
      * @throws Exception
      */
-    public function loginOrRegisterIfNull(SocialUser $socialUser): string
+    public function loginOrRegisterIfNullVk(SocialUser $socialUser): string
     {
         $user = User::query()->where('email', '=', $socialUser->getEmail())->first();
-
         if ($user === null) {
-
             $name = $socialUser->getName();
             $email = $socialUser->getEmail();
             $avatar = $socialUser->getAvatar();
-            $password = Hash::make('12345678');
-
+            $password = Hash::make('VK' . $socialUser->getEmail());
             $vk = User::create([
                 'from' => 'VK',
                 'name' => $name,
@@ -37,19 +34,48 @@ class SocialService implements Social
                 'avatar' => $avatar,
                 'password' => $password,
             ]);
-
             Auth::login($vk);
-
             return route('account');
         }
 
         $user->name = $socialUser->getName();
         $user->avatar = $socialUser->getAvatar();
+        $user->from = 'VK';
 
         if ($user->save()) {
             Auth::loginUsingId($user->id);
             return route('account');
         }
-        throw new Exception('Ошибка! Пользователь не сохранился!');
+        throw new Exception('Ошибка! Пользователь не сохранился через VK!');
     }
+
+    public function loginOrRegisterIfNullGitHub(SocialUser $socialUser): string
+    {
+        $user = User::query()->where('email', '=', $socialUser->getEmail())->first();
+        if ($user === null) {
+            $name = $socialUser->getName();
+            $email = $socialUser->getEmail();
+            $avatar = $socialUser->getAvatar();
+            $password = Hash::make('GitHub' . $socialUser->getEmail());
+            $vk = User::create([
+                'from' => 'GitHub',
+                'name' => $name,
+                'email' => $email,
+                'avatar' => $avatar,
+                'password' => $password,
+            ]);
+            Auth::login($vk);
+            return route('account');
+        }
+
+        $user->name = $socialUser->getName();
+        $user->avatar = $socialUser->getAvatar();
+        $user->from = 'GitHub';
+        if ($user->save()) {
+            Auth::loginUsingId($user->id);
+            return route('account');
+        }
+        throw new Exception('Ошибка! Пользователь не сохранился через GitHub!');
+    }
+
 }
