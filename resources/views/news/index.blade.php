@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title') Список новостей @parent @endsection
+@section('title') Новости @parent @endsection
 
 @section('content')
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -16,8 +16,9 @@
                     </svg>
 
                     <div class="card-body">
-                        <small class="text-muted">Категория: {{ $news->category->title }}</small><br>
                         <small class="text-reset">Название: {{ $news->title }}</small>
+                        <br>
+                        <small class="text-muted">Категория: {{ $news->category->title }}</small>
                         <p>{!! $news->description !!}</p>
                         <small class="text-muted">Статус: {{ $news->status }}</small>
                         <hr>

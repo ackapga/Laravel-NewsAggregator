@@ -16,12 +16,12 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link @if(request()->routeIs('admin.news.*')) active @endif" href="{{ route('admin.news.index') }}">
-                    <span data-feather="file" class="align-text-bottom"></span>
+                    <span data-feather="file-text" class="align-text-bottom"></span>
                     Новости
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link @if(request()->routeIs('admin.users.*')) active @endif" href="{{ route('admin.users.index') }}">
                     <span data-feather="users" class="align-text-bottom"></span>
                     Пользователи
                 </a>

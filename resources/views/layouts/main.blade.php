@@ -70,21 +70,22 @@
 </head>
 <body>
 <div class="wrapper">
+
     <div class="top">
         <x-news.header></x-news.header>
         <main>
-
             <div class="album py-5 bg-light">
                 <div class="container">
                     @yield('content')
                 </div>
             </div>
-
         </main>
     </div>
-    <div>
+
+    <div class="footer">
         <x-news.footer></x-news.footer>
     </div>
+
 </div>
 <script src="{{ asset('assets/bootstrap.bundle.min.js') }}"></script>
 </body>

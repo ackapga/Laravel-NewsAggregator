@@ -21,6 +21,8 @@ final class NewsQueryBuilder
     public function getNews(): Collection|LengthAwarePaginator
     {
         return $this->model
+            ->orderBy('id', 'desc')
+            ->orderBy('created_at', 'desc')
             ->with('category')
             ->paginate(config('pagination.admin.news'));
     }
@@ -28,6 +30,8 @@ final class NewsQueryBuilder
     public function getNewsForList(): Collection|LengthAwarePaginator
     {
         return $this->model
+            ->orderBy('id', 'desc')
+            ->orderBy('created_at', 'desc')
             ->status()
             ->with('category')
             ->paginate(config('pagination.user.news'));

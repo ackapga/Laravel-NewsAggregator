@@ -41,7 +41,7 @@
                     <ul class="list-unstyled">
                         <li><a href="mailto:ackapga@gmailcom" style="text-decoration: none; color: grey">Email me: ackapga@gmail.com</a></li>
                         <li><a href="https://www.instagram.com/ackapga"  style="text-decoration: none; color: gray">Instagram: @ackapga</a></li>
-                        <li><a href="https://github.com/ackapga" style="text-decoration: none; color: gray">Telegram: @ackapga</a></li>
+                        <li><a href="https://t.me/ackapga" style="text-decoration: none; color: gray">Telegram: @ackapga</a></li>
 
                     </ul>
                 </div>

@@ -1,11 +1,19 @@
 @extends('layouts.main')
 
 @section('content')
+
+    <style>
+        .card_add {
+            background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity))!important;
+            color: white;
+        }
+    </style>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Регистрация') }}</div>
+                <div class="card-header card_add">{{ __('Регистрация') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -63,8 +71,8 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Регистрация') }}
+                                <button type="submit" class="btn btn-dark">
+                                    &nbsp; Регистрация &nbsp;
                                 </button>
                             </div>
                         </div>
