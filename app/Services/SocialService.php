@@ -49,6 +49,11 @@ class SocialService implements Social
         throw new Exception('Ошибка! Пользователь не сохранился через VK!');
     }
 
+    /**
+     * @param SocialUser $socialUser
+     * @return string
+     * @throws Exception
+     */
     public function loginOrRegisterIfNullGitHub(SocialUser $socialUser): string
     {
         $user = User::query()->where('email', '=', $socialUser->getEmail())->first();
@@ -78,4 +83,39 @@ class SocialService implements Social
         throw new Exception('Ошибка! Пользователь не сохранился через GitHub!');
     }
 
+    /**
+     * @param SocialUser $socialUser
+     * @return string
+     * @throws Exception
+     */
+    public function loginOrRegisterIfNullGoogle(SocialUser $socialUser): string
+    {
+        $user = User::query()->where('email', '=', $socialUser->getEmail())->first();
+
+        if ($user === null) {
+            $name = $socialUser->getName();
+            $email = $socialUser->getEmail();
+            $avatar = $socialUser->getAvatar();
+            $password = Hash::make('Google' . $socialUser->getEmail());
+            $google = User::create([
+                'from' => 'Google',
+                'name' => $name,
+                'email' => $email,
+                'avatar' => $avatar,
+                'password' => $password,
+
+            ]);
+            Auth::login($google);
+            return route('account');
+        }
+
+        $user->name = $socialUser->getName();
+        $user->avatar = $socialUser->getAvatar();
+        $user->from = 'Google';
+        if ($user->save()) {
+            Auth::loginUsingId($user->id);
+            return route('account');
+        }
+        throw new Exception('Ошибка! Пользователь не сохранился через Google!');
+    }
 }

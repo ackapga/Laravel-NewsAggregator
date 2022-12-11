@@ -28,7 +28,11 @@ class SocialController extends Controller
             return redirect(
                 $social->loginOrRegisterIfNullGitHub(Socialite::driver($driver)->user())
             );
+        } elseif ($driver === 'google') {
+            return redirect(
+                $social->loginOrRegisterIfNullGoogle(Socialite::driver($driver)->user())
+            );
         }
-       return dd($driver);
+        return dd($driver) ;
     }
 }

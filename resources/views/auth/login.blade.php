@@ -35,18 +35,18 @@
                     <div class="card-body">
                         <div class="enter_column">
 
-                            <a href="#">
+                            <a href="{{ route('social.auth.redirect', ['driver' => 'google']) }}">
                                 <img
                                     src="https://freesvg.org/img/1534129544.png"
                                     class="logo_to"
                                     alt="Google">
                             </a>
 
-                            <a href="#">
+                            <a href="{{ route('social.auth.redirect', ['driver' => 'vkontakte']) }}">
                                 <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/2048px-Instagram_logo_2022.svg.png"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VK_Compact_Logo_%282021-present%29.svg/2048px-VK_Compact_Logo_%282021-present%29.svg.png"
                                     class="logo_to"
-                                    alt="Instagram">
+                                    alt="VK">
                             </a>
 
                             <a href="{{ route('social.auth.redirect', ['driver' => 'github']) }}">
@@ -54,13 +54,6 @@
                                     src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
                                     class="logo_to"
                                     alt="GitHub">
-                            </a>
-
-                            <a href="{{ route('social.auth.redirect', ['driver' => 'vkontakte']) }}">
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/VK_Compact_Logo.svg/2048px-VK_Compact_Logo.svg.png"
-                                    class="logo_to"
-                                    alt="VK">
                             </a>
 
                         </div>

@@ -15,4 +15,6 @@ interface Social
     public function loginOrRegisterIfNullVk(SocialUser $socialUser): string;
 
     public function loginOrRegisterIfNullGitHub(SocialUser $socialUser): string;
+
+    public function loginOrRegisterIfNullGoogle(SocialUser $socialUser): string;
 }
