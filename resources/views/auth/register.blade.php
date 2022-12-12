@@ -74,6 +74,7 @@
                                 <button type="submit" class="btn btn-dark">
                                     &nbsp; Регистрация &nbsp;
                                 </button>
+                                <a href="/" class="btn btn-secondary">Отмена</a>
                             </div>
                         </div>
                     </form>

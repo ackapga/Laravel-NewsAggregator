@@ -47,7 +47,6 @@
         }
 
         .head {
-            border: 1px solid black;
 
             display: flex;
             justify-content: space-around;
@@ -61,6 +60,23 @@
 
         .textP {
             margin-top: 15px;
+        }
+
+        .change {
+            background: linear-gradient(to bottom, #ffffff, #a1eaf8);
+            color: #59c0e8;
+        }
+
+        .delete {
+            background: linear-gradient(to bottom, #ffffff, #ff0000);
+            padding: 30px;
+        }
+
+        .butt {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
     </style>
@@ -83,16 +99,87 @@
                 <h2 class="title">{{ Auth::user()->name }} </h2>
             </div>
 
-            @if(Auth::user()->is_admin === true)
-                <h5 class="h5_text">
-                    <a href="{{ route('admin.index') }}" class="href">&#10048; &nbsp;GO TO ADMIN&nbsp;</a>
-                </h5>
-            @else
-                <h5 class="h5_text">
-                    <a href="/" class="href">&nbsp; NewsAggregator &nbsp;</a>
-                </h5>
-            @endif
+            <div class="butt">
+                @if(Auth::user()->is_admin === true)
+                    <h5 class="h5_text">
+                        <a href="{{ route('admin.index') }}" class="href">&#10048; &nbsp;GO TO ADMIN&nbsp;</a>
+                    </h5>
+                @else
+                    <h5 class="h5_text">
+                        <a href="/" class="href">&nbsp; NewsAggregator &nbsp;</a>
+                    </h5>
+                @endif
+
+                <hr>
+
+                <button type="button" class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#edit"
+                        aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"
+                        style="color: white">
+                    <span>Редактировать Профиль &#9776;</span>
+                </button>
+
+            </div>
+
         </div>
 
     </div>
+
+    <div class="change collapse" id="edit">
+
+        <div class="offset-2 col-8">
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
+                <h1 class="h2">Редактировать Профиль</h1>
+            </div>
+
+            @include('inc.message')
+
+            <form method="post" action="#">
+
+                @csrf
+
+                @method('put')
+
+                <h5>Зарегистрировался через: #</h5>
+
+                <div class="form-group">
+                    <lable for="name">Имя</lable>
+                    <input type="text" class="form-control" name="name" id="name" value="#">
+                    @error('name') <span style="color: red">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="form-group">
+                    <lable for="email">Email</lable>
+                    <input type="text" class="form-control" name="email" id="email" value="#">
+                    @error('email') <span style="color: red">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="form-group">
+                    <lable for="password">Пароль</lable>
+                    <input type="password" class="form-control" name="password" id="password"
+                           placeholder="Поменять на Новый пароль">
+                    @error('password') <span style="color: red">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="form-group">
+                    <lable for="avatar">Изображение</lable>
+                    <input type="file" class="form-control" name="avatar" id="avatar" value="#">
+                </div>
+
+                <br>
+
+                <button class="btn btn-info" type="submit">Редактировать</button>
+
+                <br><br><br>
+
+                <a href="#" class="btn btn-danger" style="display: flex; justify-content: center">Удалить профиль</a>
+
+                <br><br><br>
+
+            </form>
+
+        </div>
+
+    </div>
+
 @endsection
