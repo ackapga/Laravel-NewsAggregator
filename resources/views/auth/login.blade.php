@@ -25,6 +25,16 @@
             background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
             color: white;
         }
+
+        .aHref {
+            text-decoration: none;
+            color: black;
+        }
+
+        .aHref:hover {
+            color: #000000;
+            text-shadow: 0 0 10px rgb(161, 161, 161);
+        }
     </style>
 
     <div class="container">
@@ -34,6 +44,8 @@
                     <div class="card-header card_add">{{ __('Авторизация') }}</div>
                     <div class="card-body">
                         <div class="enter_column">
+
+                            <label class="col-form-label">Войти через </label>
 
                             <a href="{{ route('social.auth.redirect', ['driver' => 'google']) }}">
                                 <img
@@ -114,8 +126,8 @@
                                     </button>
 
                                     @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Забыли пароль?(ПОКА НЕ РАБОТАЕТ СКОРО СДЕЛАЮ)') }}
+                                        <a class="btn btn-link aHref" href="{{ route('password.request') }}">
+                                            {{ __('Забыли пароль?') }}
                                         </a>
                                     @endif
                                 </div>

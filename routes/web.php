@@ -32,16 +32,25 @@ Route::get('/news/{id}', [NewsController::class, 'show'])
     ->where('id', '\d+')
     ->name('news.show');
 
-Auth::routes();
+Auth::routes([
+    'login' => true,
+    'logout' => true,
+    'register' => true,
+    'reset' => true,
+    'confirm' => false,
+    'verify' => true,
+]);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/account', AccountIndexController::class)->name('account');
-    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function () {
-        Route::get('/', IndexControllerAdmin::class)->name('index');
-        Route::get('/parser', ParserController::class)->name('parser');
-        Route::resource('categories', AdminCategoryController::class);
-        Route::resource('news', AdminNewsController::class);
-        Route::resource('users', AdminUserController::class);
+    Route::middleware('verified')->group(function () {
+        Route::get('/account', AccountIndexController::class)->name('account');
+        Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function () {
+            Route::get('/', IndexControllerAdmin::class)->name('index');
+            Route::get('/parser', ParserController::class)->name('parser');
+            Route::resource('categories', AdminCategoryController::class);
+            Route::resource('news', AdminNewsController::class);
+            Route::resource('users', AdminUserController::class);
+        });
     });
 });
 
@@ -52,7 +61,6 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/auth/callback/{driver}', [SocialController::class, 'callback'])
         ->where('driver', '\w+');
 });
-
 
 
 
