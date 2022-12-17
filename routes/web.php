@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Account\AccountController;
 use App\Http\Controllers\Account\IndexController as AccountIndexController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
@@ -44,6 +45,7 @@ Auth::routes([
 Route::middleware('auth')->group(function () {
     Route::middleware('verified')->group(function () {
         Route::get('/account', AccountIndexController::class)->name('account');
+        Route::resource('user', AccountController::class);
         Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function () {
             Route::get('/', IndexControllerAdmin::class)->name('index');
             Route::get('/parser', ParserController::class)->name('parser');

@@ -27,7 +27,7 @@ class EditRequest extends FormRequest
             'is_admin' => ['nullable', 'exists:users,is_admin'],
             'name' => ['required', 'string', 'min:3', 'max:50'],
             'email' => ['required', 'string', 'email',],
-            'avatar' => ['nullable', 'image', 'mimes:jpg,png,svg'],
+            'avatar' => ['nullable'],
             'password' => ['nullable', 'string', 'min:8'],
         ];
     }

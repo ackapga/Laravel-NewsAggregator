@@ -50,6 +50,14 @@
                 <input type="file" class="form-control" name="avatar" id="avatar" value="{{ $user->avatar }}">
             </div>
 
+            <div style="display: none">
+                <input type="text" name="avatar" id="avatar" value="{{ $user->avatar }}">
+            </div>
+            <div style="display: none">
+                <input type="text" name="from" id="from" value="{{ $user->from }}">
+            </div>
+
+
             <br>
 
             <button class="btn btn-success" type="submit">Сохранить</button>
