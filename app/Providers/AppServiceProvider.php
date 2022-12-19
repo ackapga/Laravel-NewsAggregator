@@ -7,6 +7,7 @@ use App\Services\Contracts\Parser;
 use App\Services\Contracts\Social;
 use App\Services\ParsesService;
 use App\Services\SocialService;
+use App\Services\UploadService;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(Parser::class, ParsesService::class);
         $this->app->bind(Social::class, SocialService::class);
+        $this->app->bind(UploadService::class);
     }
 
     /**

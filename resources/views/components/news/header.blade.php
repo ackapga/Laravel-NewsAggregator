@@ -43,10 +43,14 @@
 
                 <div style="display: flex">
 
-                    @if(Auth::user()->avatar)
+                    @if(stristr(Auth::user()->avatar , 'https://') === false)
+                        <img class="img_little" src="{{ Storage::disk('public')->url(Auth::user()->avatar) }}"
+                             alt="avatar">
+                    @elseif(Auth::user()->avatar)
                         <img class="img_little" src="{{ Auth::user()->avatar }}" alt="avatar">
                     @else
-                        <img class="img_cat_little" src="https://b3.dd.icdn.ru/m/mink_blue/6/imgsrc.ru_74126546vFm.webp" alt="">
+                        <img class="img_cat_little" src="https://b3.dd.icdn.ru/m/mink_blue/6/imgsrc.ru_74126546vFm.webp"
+                             alt="">
                     @endif
 
                     <li class="nav-item dropdown">

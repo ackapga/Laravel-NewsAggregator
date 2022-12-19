@@ -82,10 +82,12 @@
     </style>
 
     <div class="back-yellow">
-        @include('inc.message')
         <div class="head">
             <div class="center">
-                @if(Auth::user()->avatar)
+                @if(stristr(Auth::user()->avatar , 'https://') === false)
+                    <img class="img" src="{{ Storage::disk('public')->url(Auth::user()->avatar) }}" alt="avatar">
+                    <p class="title textP">Вход с {{ Auth::user()->from }}</p>
+                @elseif(Auth::user()->avatar)
                     <img class="img" src="{{ Auth::user()->avatar }}" alt="avatar">
                     <p class="title textP">Вход с {{ Auth::user()->from }}</p>
                 @else
@@ -123,12 +125,12 @@
         </div>
 
     </div>
-
+    @include('inc.message')
     <div class="change collapse" id="edit">
 
         <div class="offset-2 col-8">
 
-            <form method="post" action="{{ route('user.update', [$user]) }}">
+            <form method="post" action="{{ route('user.update', [$user]) }}" enctype="multipart/form-data">
 
                 @csrf
 

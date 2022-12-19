@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\EditRequest;
 use App\Models\User;
+use App\Services\UploadService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -56,11 +57,23 @@ class AccountController extends Controller
     /**
      * @param EditRequest $request
      * @param User $user
+     * @param UploadService $service
      * @return RedirectResponse
      */
-    public function update(EditRequest $request, User $user): RedirectResponse
+    public function update(
+        EditRequest   $request,
+        User          $user,
+        UploadService $service
+    ): RedirectResponse
     {
-        $user = $user->fill($request->validated());
+        $validated = $request->validated();
+
+        if ($request->hasFile('avatar')) {
+            $validated['avatar'] = $service->uploadUserImage($request->file('avatar'));
+        }
+
+        $user = $user->fill($validated);
+
         if ($user->fill([
             'password' => Hash::make($request['password'])
         ])->save()) {

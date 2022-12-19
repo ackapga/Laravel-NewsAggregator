@@ -10,7 +10,7 @@
 
         @include('inc.message')
 
-        <form method="post" action="{{ route('admin.news.store') }}">
+        <form method="post" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
 
             @csrf
 

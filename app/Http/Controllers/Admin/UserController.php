@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\EditRequest;
 use App\Models\User;
 use App\Queries\UsersQueryBuilder;
+use App\Services\UploadService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\Foundation\Application;
@@ -50,11 +51,22 @@ class UserController extends Controller
     /**
      * @param EditRequest $request
      * @param User $user
+     * @param UploadService $service
      * @return RedirectResponse
      */
-    public function update(EditRequest $request, User $user): RedirectResponse
+    public function update(
+        EditRequest   $request,
+        User          $user,
+        UploadService $service
+    ): RedirectResponse
     {
-        $user = $user->fill($request->validated());
+        $validated = $request->validated();
+
+        if ($request->hasFile('avatar')) {
+            $validated['avatar'] = $service->uploadUserImage($request->file('avatar'));
+        }
+
+        $user = $user->fill($validated);
 
         if ($user->fill([
             'password' => Hash::make($request['password'])

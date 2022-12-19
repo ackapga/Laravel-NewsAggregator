@@ -8,6 +8,7 @@ use App\Http\Requests\News\EditRequest;
 use App\Models\Category;
 use App\Models\News;
 use App\Queries\NewsQueryBuilder;
+use App\Services\UploadService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -40,18 +41,22 @@ class NewsController extends Controller
     /**
      * @param CreateRequest $request
      * @param NewsQueryBuilder $builder
+     * @param UploadService $service
      * @return RedirectResponse
      */
     public function store(
         CreateRequest    $request,
-        NewsQueryBuilder $builder
+        NewsQueryBuilder $builder,
+        UploadService    $service
     ): RedirectResponse
     {
-        $news = $builder->create(
-            $request->validated()
-        );
+        $validated = $request->validated();
 
-        if ($news) {
+        if ($request->hasFile('image')) {
+            $validated['image'] = $service->uploadImage($request->file('image'));
+        }
+
+        if ($builder->create($validated)) {
             return redirect()->route('admin.news.index')
                 ->with('success', __('messages.admin.news.store.success'));
         }
@@ -75,15 +80,23 @@ class NewsController extends Controller
      * @param EditRequest $request
      * @param News $news
      * @param NewsQueryBuilder $builder
+     * @param UploadService $service
      * @return RedirectResponse
      */
     public function update(
         EditRequest      $request,
         News             $news,
-        NewsQueryBuilder $builder
+        NewsQueryBuilder $builder,
+        UploadService    $service
     ): RedirectResponse
     {
-        if ($builder->update($news, $request->validated())) {
+        $validated = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $service->uploadImage($request->file('image'));
+        }
+
+        if ($builder->update($news, $validated)) {
             return redirect()->route('admin.news.index')
                 ->with('success', __('messages.admin.news.update.success'));
         }
