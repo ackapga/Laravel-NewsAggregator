@@ -6,6 +6,9 @@
 
     <a href="{{route('admin.parser')}}">Парсинг</a>
 
+
+    <hr>
+
     <x-alert type="danger" :message="$message"></x-alert>
     <x-alert type="warning" :message="$message"></x-alert>
     <x-alert type="success" :message="$message"></x-alert>
