@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Services\Contracts\Parser;
+use Illuminate\Support\Facades\Storage;
 use Orchestra\Parser\Xml\Facade as XmlParser;
 
 class ParsesService implements Parser
@@ -15,12 +18,19 @@ class ParsesService implements Parser
         return $this;
     }
 
-    public function getParseDate(): array
+    public function saveParseDate(): void
     {
         $xml = XmlParser::load($this->link);
-        return $xml->parse([
+
+        $date = $xml->parse([
             'title' => [
                 'uses' => 'channel.title'
+            ],
+            'link' => [
+                'uses' => 'channel.link'
+            ],
+            'language' => [
+                'uses' => 'channel.language'
             ],
             'description' => [
                 'uses' => 'channel.description'
@@ -28,13 +38,16 @@ class ParsesService implements Parser
             'image' => [
                 'uses' => 'channel.image.url'
             ],
-            'link' => [
-                'uses' => 'channel.link'
-            ],
             'news' => [
-                'uses' => 'channel.item[title,link,guid,description,pubDate]'
+                'uses' => 'channel.item[guid,title,link,pubDate,description,category,author]'
             ],
 
         ]);
+
+        $urlWithout = \explode("/", $this->link);
+        $fileName = end($urlWithout);
+        $jsonEncode = json_encode($date);
+
+        Storage::append('newsList/' . $fileName, $jsonEncode);
     }
 }

@@ -10,7 +10,7 @@
 
         @include('inc.message')
 
-        <form method="post" action="{{ route('admin.users.update', ['user' => $user]) }}">
+        <form method="post" action="{{ route('admin.users.update', ['user' => $user]) }}" enctype="multipart/form-data">
 
             @csrf
 
@@ -49,6 +49,12 @@
                 <lable for="avatar">Изображение</lable>
                 <input type="file" class="form-control" name="avatar" id="avatar" value="{{ $user->avatar }}">
             </div>
+
+
+            <div style="display: none">
+                <input type="text" name="from" id="from" value="{{ $user->from }}">
+            </div>
+
 
             <br>
 

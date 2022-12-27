@@ -10,7 +10,7 @@
 
         @include('inc.message')
 
-        <form method="post" action="{{ route('admin.news.update', ['news' => $news]) }}">
+        <form method="post" action="{{ route('admin.news.update', ['news' => $news]) }}" enctype="multipart/form-data">
 
             @csrf
 
@@ -70,3 +70,10 @@
     </div>
 
 @endsection
+
+@push('js')
+    <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('description', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
+    </script>
+@endpush

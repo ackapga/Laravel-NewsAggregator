@@ -18,13 +18,13 @@
                         <div style="text-align: center">
                             {{ __('Прежде чем продолжить, проверьте свою электронную почту на наличие ссылки для подтверждения.') }}
                             <br>
-                            {{ __('Если вы не получили письмо') }},
+                            {{ __('Если вы не получили письмо') }}
                         </div>
                         <br>
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
                             <button type="submit"
-                                    class="btn btn-secondary">{{ __('нажмите здесь, чтобы запросить другой') }}</button>
+                                    class="btn btn-secondary">{{ __('Нажмите, чтобы запросить письмо') }}</button>
                         </form>
                     </div>
                 </div>

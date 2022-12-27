@@ -82,10 +82,12 @@
     </style>
 
     <div class="back-yellow">
-
         <div class="head">
             <div class="center">
-                @if(Auth::user()->avatar)
+                @if(stristr(Auth::user()->avatar , 'https://') === false)
+                    <img class="img" src="{{ Storage::disk('public')->url(Auth::user()->avatar) }}" alt="avatar">
+                    <p class="title textP">Вход с {{ Auth::user()->from }}</p>
+                @elseif(Auth::user()->avatar)
                     <img class="img" src="{{ Auth::user()->avatar }}" alt="avatar">
                     <p class="title textP">Вход с {{ Auth::user()->from }}</p>
                 @else
@@ -115,7 +117,7 @@
                 <button type="button" class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#edit"
                         aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"
                         style="color: white">
-                    <span>Редактировать Профиль &#9776;</span>
+                    <span>Профиль &#9776;</span>
                 </button>
 
             </div>
@@ -123,34 +125,26 @@
         </div>
 
     </div>
-
+    @include('inc.message')
     <div class="change collapse" id="edit">
 
         <div class="offset-2 col-8">
 
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
-                <h1 class="h2">Редактировать Профиль</h1>
-            </div>
-
-            @include('inc.message')
-
-            <form method="post" action="#">
+            <form method="post" action="{{ route('user.update', [$user]) }}" enctype="multipart/form-data">
 
                 @csrf
 
                 @method('put')
 
-                <h5>Зарегистрировался через: #</h5>
-
                 <div class="form-group">
                     <lable for="name">Имя</lable>
-                    <input type="text" class="form-control" name="name" id="name" value="#">
+                    <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}">
                     @error('name') <span style="color: red">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group">
                     <lable for="email">Email</lable>
-                    <input type="text" class="form-control" name="email" id="email" value="#">
+                    <input type="text" class="form-control" name="email" id="email" value="{{ $user->email }}">
                     @error('email') <span style="color: red">{{ $message }}</span> @enderror
                 </div>
 
@@ -163,18 +157,25 @@
 
                 <div class="form-group">
                     <lable for="avatar">Изображение</lable>
-                    <input type="file" class="form-control" name="avatar" id="avatar" value="#">
+                    <input type="file" class="form-control" name="avatar" id="avatar" value="{{ $user->avatar }}">
                 </div>
+
+                <div style="display: none">
+                    <input type="text" name="avatar" id="avatar" value="{{ $user->avatar }}">
+                </div>
+                <div style="display: none">
+                    <input type="text" name="from" id="from" value="{{ $user->from }}">
+                </div>
+
 
                 <br>
 
-                <button class="btn btn-info" type="submit">Редактировать</button>
+                <button class="btn btn-success" type="submit">Сохранить</button>
+                <a href="{{ route('admin.users.index') }}" class="btn btn-primary">Назад</a>
 
-                <br><br><br>
+            </form>
 
-                <a href="#" class="btn btn-danger" style="display: flex; justify-content: center">Удалить профиль</a>
-
-                <br><br><br>
+            <br><br><br>
 
             </form>
 
