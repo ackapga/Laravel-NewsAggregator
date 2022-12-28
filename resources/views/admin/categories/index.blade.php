@@ -39,7 +39,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
                         </form>
-                    </td>
+                    </th>
                 </tr>
             @empty
                 <tr>
