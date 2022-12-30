@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Resources\CreateRequest;
 use App\Http\Requests\Resources\EditRequest;
-use App\Models\Resources;
+use App\Models\Job;
 use App\Queries\ResourcesQueryBuilder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\Foundation\Application;
@@ -14,14 +14,17 @@ use Illuminate\Contracts\View\View;
 
 class IndexController extends Controller
 {
+
     /**
      * @param ResourcesQueryBuilder $resources
+     * @param Job $job
      * @return View|Factory|Application
      */
-    public function index(ResourcesQueryBuilder $resources): View|Factory|Application
+    public function index(ResourcesQueryBuilder $resources, Job $job): View|Factory|Application
     {
         return view('admin.index', [
-            'resources' => $resources->getResources()
+            'resources' => $resources->getResources(),
+            'job' => $job::query()->get(),
         ]);
     }
 
@@ -44,7 +47,11 @@ class IndexController extends Controller
         return back()->with('error', __('messages.admin.resources.store.error'));
     }
 
-
+    /**
+     * @param ResourcesQueryBuilder $builder
+     * @param EditRequest $request
+     * @return RedirectResponse
+     */
     public function update(
         ResourcesQueryBuilder $builder,
         EditRequest           $request
@@ -56,7 +63,6 @@ class IndexController extends Controller
         }
         return back()->with('error', __('messages.admin.resources.update.error'));
     }
-
 
     /**
      * @param ResourcesQueryBuilder $resources

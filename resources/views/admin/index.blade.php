@@ -72,4 +72,7 @@
     <br>
     <hr>
 
+    <p style="color: #e7e7e7">RSS URL В очереди: </p>
+    <p style="color: #e7e7e7">{{ $job }}</p>
+
 @endsection
