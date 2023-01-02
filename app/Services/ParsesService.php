@@ -44,8 +44,8 @@ class ParsesService implements Parser
 
         ]);
 
-        $urlWithout = \explode("/", $this->link);
-        $fileName = end($urlWithout);
+        $urlWithoutSlash = \explode("/", $this->link);
+        $fileName = end($urlWithoutSlash);
         $jsonEncode = json_encode($date);
 
         Storage::append('newsList/' . $fileName, $jsonEncode);

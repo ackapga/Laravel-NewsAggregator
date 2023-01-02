@@ -62,7 +62,7 @@
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"
                              style="position: absolute; z-index: 1">
                             @if(Auth::user()->is_admin === true)
-                                <a class="dropdown-item" href="{{ route('admin.index') }}">Админка</a>
+                                <a class="dropdown-item" href="{{ route('admin.resources.index') }}">Админка</a>
                             @endif
                             <a class="dropdown-item" href="{{ route('account') }}">Кабинет</a>
 

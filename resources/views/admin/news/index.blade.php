@@ -47,11 +47,11 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
                         </form>
-                    </td>
+                    </th>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7">Записи не найдены!</td>
+                    <td colspan="9">Записи не найдены!</td>
                 </tr>
             @endforelse
             </tbody>

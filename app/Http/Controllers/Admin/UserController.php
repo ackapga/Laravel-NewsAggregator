@@ -28,15 +28,6 @@ class UserController extends Controller
         ]);
     }
 
-
-    /**
-     * @param $id
-     * @return void
-     */
-    public function show($id)
-    {
-    }
-
     /**
      * @param User $user
      * @return Application|Factory|View
