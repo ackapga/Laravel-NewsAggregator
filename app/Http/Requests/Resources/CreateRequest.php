@@ -24,7 +24,7 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'urlName' => ['required', 'string', 'min:3', 'max:350'],
+            'urlName' => ['required', 'string', 'active_url', 'unique:resources,urlName'],
         ];
     }
 
@@ -34,7 +34,7 @@ class CreateRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'urlName' => 'URL RSS сылка',
+            'urlName' => 'RSS URL',
         ];
     }
 }

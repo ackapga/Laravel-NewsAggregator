@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Resources\CreateRequest;
 use App\Http\Requests\Resources\EditRequest;
 use App\Models\Job;
+use App\Models\JobFailed;
 use App\Queries\ResourcesQueryBuilder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -20,11 +22,16 @@ class IndexController extends Controller
      * @param Job $job
      * @return View|Factory|Application
      */
-    public function index(ResourcesQueryBuilder $resources, Job $job): View|Factory|Application
+    public function index(
+        ResourcesQueryBuilder $resources,
+        Job                   $job,
+        JobFailed             $jobFailed,
+    ): View|Factory|Application
     {
         return view('admin.index', [
             'resources' => $resources->getResources(),
-            'job' => $job::query()->get(),
+            'job' => $job::query()->select('payload')->get(),
+            'jobFailed' => $jobFailed::query()->select('payload')->get(),
         ]);
     }
 

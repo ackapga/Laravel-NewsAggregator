@@ -43,7 +43,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">Записи не найдены!</td>
+                    <td colspan="5">Записи не найдены!</td>
                 </tr>
             @endforelse
             </tbody>
