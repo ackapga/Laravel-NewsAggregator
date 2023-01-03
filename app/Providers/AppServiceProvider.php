@@ -48,12 +48,12 @@ class AppServiceProvider extends ServiceProvider
                 ->line(Lang::get('Если вы не создавали учетную запись, никаких дальнейших действий не требуется.'));
         });
 
-        ResetPassword::toMailUsing(function ($notifiable, $url) {
+        ResetPassword::toMailUsing(function ($notifiable, $token) {
             return (new MailMessage())
                 ->subject(Lang::get('Уведомление о сбросе пароля'))
                 ->line(Lang::get('Вы получили это письмо, потому что мы получили запрос на сброс пароля для вашей учетной записи.'))
-                ->action(Lang::get('Сброс пароля'), $url)
-                ->line(Lang::get('Срок действия этой ссылки для сброса пароля истекает через :count минут.', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
+                ->action(Lang::get('Сброс пароля'), url(config('app.url').route('password.reset', $token, false)))
+                ->line(Lang::get('Срок действия этой ссылки для сброса пароля истекает через :count минут.', ['count' => config('auth.passwords.' . config('auth.defaults.passwords') . '.expire')]))
                 ->line(Lang::get('Если вы не запрашивали сброс пароля, никаких дальнейших действий не требуется.'));
         });
     }

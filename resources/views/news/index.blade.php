@@ -47,6 +47,9 @@
         @endforelse
     </div>
 
+    <br>
+    <hr>
+
     {{ $newsList->links() }}
 
 @endsection

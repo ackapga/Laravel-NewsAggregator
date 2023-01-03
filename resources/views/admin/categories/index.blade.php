@@ -49,6 +49,8 @@
             </tbody>
         </table>
 
+        <br>
+
         {{ $categories->links() }}
 
     </div>

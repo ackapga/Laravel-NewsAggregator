@@ -22,7 +22,7 @@
     </span>
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-            <a class="nav-link px-3" href="/">&nbsp; &#10006; &nbsp;</a>
+            <a class="nav-link px-3" href="#" OnClick="history.back();">&nbsp; &#10006; &nbsp;</a>
         </div>
     </div>
 </header>

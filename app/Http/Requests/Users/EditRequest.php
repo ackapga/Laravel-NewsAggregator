@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Users;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class EditRequest extends FormRequest
 {
@@ -24,9 +26,9 @@ class EditRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'is_admin' => ['nullable', 'exists:users,is_admin'],
-            'name' => ['required', 'string', 'min:3', 'max:50'],
-            'email' => ['required', 'string', 'email',],
+            'is_admin' => ['nullable', 'int'],
+            'name' => ['nullable', 'string', 'min:3', 'max:50'],
+            'email' => ['nullable', 'string', 'email', Rule::unique('users')->ignore(Auth::user()->getAuthIdentifier())],
             'avatar' => ['nullable'],
             'password' => ['nullable', 'string', 'min:8'],
         ];
@@ -38,10 +40,9 @@ class EditRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'min' => [
-                'string' => 'Поле :attribute должно быть не меньше :min символов',
-            ],
-            'exists' => 'Выбранное значение некорректно, выберите из списка!',
+            'name' => 'Имя',
+            'email' => 'Email',
+            'password' => 'Пароль',
         ];
     }
 }
