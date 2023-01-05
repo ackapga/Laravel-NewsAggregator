@@ -25,6 +25,7 @@
                 <th scope="col">Дата добавления</th>
                 <th scope="col">Дата обновление</th>
                 <th scope="col">Управление</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -38,10 +39,12 @@
                     <td>{{ $news->status }}</td>
                     <td>{{ $news->created_at}}</td>
                     <td>{{ $news->updated_at}}</td>
-                    <th scope="col" style="display: flex">
+                    <th>
                         <a href="{{ route('admin.news.edit', ['news' => $news->id]) }}">
                             <button type="button" class="btn btn-primary btn-sm">Редактор</button>
-                        </a> &nbsp;
+                        </a>
+                    </th>
+                    <th>
                         <form method="post" action={{ route('admin.news.destroy', [$news->id]) }}>
                             @csrf
                             @method('DELETE')
@@ -51,7 +54,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="9">Записи не найдены!</td>
+                    <td colspan="10">Записи не найдены!</td>
                 </tr>
             @endforelse
             </tbody>
