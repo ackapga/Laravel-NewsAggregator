@@ -28,6 +28,21 @@
             box-shadow: black;
         }
 
+        .hrefAdmin {
+            text-decoration: none;
+            color: white;
+            padding: 7px;
+            background-color: #fdc007;
+            border: 2px solid #faeec6;
+            border-radius: 15px;
+        }
+
+        .hrefAdmin:hover {
+            color: white;
+            background-color: #fdc719;
+            box-shadow: 0 0 10px white;
+        }
+
         .img {
             width: 20vh;
             border-radius: 100px;
@@ -112,17 +127,6 @@
                     <img class="img" src="{{ Auth::user()->avatar }}" alt="AVATAR">
                     <p class="title textP">Вход с {{ Auth::user()->from }}</p>
                 @endif
-
-                @if(Auth::user()->id == 1)
-                    @if(Auth::user()->is_admin !== true )
-                            <form method="post" action="{{ route('user.update', [$user]) }}">
-                                @csrf
-                                @method('put')
-                                <input type="text" name="is_admin" id="is_admin" value="1" style="display: none">
-                                <button class="btn btn-outline-warning" type="submit"> &#10048; Стать Администратором &#10048; </button>
-                            </form>
-                    @endif
-                @endif
             </div>
 
             <div class="text">
@@ -133,9 +137,9 @@
             <div class="butt">
                 @if(Auth::user()->is_admin === true)
                     <h5 class="h5_text">
-                        <a href="{{ route('admin.resources.index') }}" class="href">&#10048; &nbsp;GO TO ADMIN&nbsp;</a>
+                        <a href="{{ route('admin.resources.index') }}" class="hrefAdmin">&#10048; &nbsp;GO TO ADMIN&nbsp;</a>
                     </h5>
-                    <br>
+                    <hr>
                     <h5 class="h5_text">
                         <a href="/" class="href">&nbsp; NewsAggregator &nbsp;</a>
                     </h5>
@@ -170,6 +174,15 @@
                 @csrf
 
                 @method('put')
+
+                <input type="text" name="from" id="from" value="{{ $user->from }}" style="display: none">
+
+                @if(Auth::user()->id == 1)
+                    @if(Auth::user()->is_admin !== true )
+                            <input type="text" name="is_admin" id="is_admin" value="1" style="display: none">
+                            <button class="btn btn-outline-warning" type="submit"> &#10048; Стать Администратором &#10048; </button>
+                    @endif
+                @endif
 
                 <div class="form-group">
                     <lable for="name">Имя</lable>

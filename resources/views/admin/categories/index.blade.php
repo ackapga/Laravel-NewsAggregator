@@ -42,8 +42,28 @@
                     </th>
                 </tr>
             @empty
+                <style>
+                    .haveNotDiv {
+                        border: 1px solid #dde1e5;
+
+                    }
+
+                    .haveNot {
+                        padding-top: 1%;
+                        font-weight: bold;
+                        position: relative;
+                        animation: example 10s infinite alternate;
+                    }
+
+                    @keyframes example {
+                        from {left: 0; color: black}
+                        to {left: 70%; color: red}
+                    }
+                </style>
                 <tr>
-                    <td colspan="5">Записи не найдены!</td>
+                    <td colspan="5" class="haveNotDiv">
+                        <h5 class="haveNot">Записи не найдены!</h5>
+                    </td>
                 </tr>
             @endforelse
             </tbody>
