@@ -9,10 +9,15 @@ class Resources extends Model
 {
     use HasFactory;
 
+    public const NEW = 'NEW';
+    public const USED = 'USED';
+    public const UPDATE = 'UPDATE';
+
     protected $table = 'resources';
 
     protected $fillable = [
         'id',
-        'urlName'
+        'urlName',
+        'status'
     ];
 }
