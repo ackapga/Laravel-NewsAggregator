@@ -11,9 +11,21 @@
                     <br>
                     Использовал фреймворк - Laravel.
                 </p>
+                @guest
                 <div style="display: flex; flex-direction: column; ">
                     <a href="{{ route('news.index') }}" class="btn btn-secondary my-2">Просмотр новостей</a>
                 </div>
+                @else
+                    <div style="display: flex; flex-direction: column">
+                        <a href="{{ route('news.index') }}" class="btn btn-secondary my-2">Просмотр новостей</a>
+              <div style="display: flex; justify-content: space-between">
+                  <a href="{{ route('account') }}" class="btn btn-warning my-2" style="color: white; width: 100%; margin: 3px">Кабинет</a>
+                  @if(Auth::user()->is_admin == true)
+                      <a href="{{ route('admin.resources.index') }}" class="btn btn-danger my-2" style="color: white; width: 100%; margin: 3px">Админка</a>
+                  @endif
+              </div>
+                    </div>
+                @endguest
             </div>
         </div>
     </section>

@@ -110,6 +110,16 @@
             .w_href {
                 color: black;
                 text-decoration: none;
+                animation-name: example;
+                animation-duration: 10s;
+                animation-direction: reverse;
+            }
+
+            @keyframes example {
+                0%   {color: black;}
+                25%  {color: orange;}
+                50%  {color: red;}
+                100% {color: black;}
             }
 
             .w_href:hover {
@@ -122,7 +132,7 @@
             style="border: 1px solid grey; padding: 10px; display: block; white-space: nowrap; overflow: hidden; margin-bottom: 3px; overflow-x: auto">
             <div class="display">
                 <h6 class="pr">RSS URL В очереди:</h6>
-                <a href="{{ route('admin.job')}}" class="w_href">Очистить список</a>
+                <a href="{{ route('admin.job')}}" class="w_href">Очистить список &#10805;</a>
             </div>
 
             @foreach($job as $js)
@@ -134,7 +144,7 @@
             style="border: 1px solid grey; padding: 10px; display: block; white-space: nowrap; overflow: hidden; overflow-x: auto">
             <div class="display">
                 <h6 class="pr2">RSS URL Ошибки:</h6>
-                <a href="{{ route('admin.jobFail')}}" class="w_href">Очистить список</a>
+                <a href="{{ route('admin.jobFail')}}" class="w_href">Очистить список &#10805;</a>
             </div>
             @foreach($jobFailed as $jf)
                 <p style="text-overflow: ellipsis">{{ $jf }}</p>
@@ -148,4 +158,9 @@
             confirm('Очередь запушена! Рекомендуется обновить страницу.')
         }
     </script>
+
+
+   @php
+       Storage::disk('public')->url(Auth::user()->avatar)
+   @endphp
 @endsection

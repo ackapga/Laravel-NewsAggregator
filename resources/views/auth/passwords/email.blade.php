@@ -7,8 +7,24 @@
                 <div class="card">
                     <div class="card-header"
                          style="background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;color: white; display: flex; justify-content: space-between">
-                        <div>Сброс пароля:</div>
-                        <div>Пароль будет отправлен на MailTrap.io</div>
+                        <div>Сброс пароля</div>
+                        <div>
+                            <style>
+                                .mail {
+                                    color: #c3eac0;
+                                    text-decoration: none;
+                                }
+
+                                .mail:hover {
+                                    color: #00e5a7;
+                                    text-shadow: 0 0 5px #1a2e44;
+                                }
+                            </style>
+                            Ссылка для сброса пароля будет отправлена на
+                            <a href="https://mailtrap.io/inboxes" target="_blank" class="mail">
+                                Mailtrap.io
+                            </a>
+                        </div>
                     </div>
 
                     <div class="card-body">

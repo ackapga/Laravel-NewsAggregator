@@ -25,6 +25,7 @@
                 <th scope="col">Дата добавления</th>
                 <th scope="col">Дата обновление</th>
                 <th scope="col">Управление</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -38,10 +39,12 @@
                     <td>{{ $news->status }}</td>
                     <td>{{ $news->created_at}}</td>
                     <td>{{ $news->updated_at}}</td>
-                    <th scope="col" style="display: flex">
+                    <th>
                         <a href="{{ route('admin.news.edit', ['news' => $news->id]) }}">
                             <button type="button" class="btn btn-primary btn-sm">Редактор</button>
-                        </a> &nbsp;
+                        </a>
+                    </th>
+                    <th>
                         <form method="post" action={{ route('admin.news.destroy', [$news->id]) }}>
                             @csrf
                             @method('DELETE')
@@ -50,12 +53,34 @@
                     </th>
                 </tr>
             @empty
+                <style>
+                    .haveNotDiv {
+                        border: 1px solid #dde1e5;
+
+                    }
+
+                    .haveNot {
+                        padding-top: 1%;
+                        font-weight: bold;
+                        position: relative;
+                        animation: example 10s infinite alternate;
+                    }
+
+                    @keyframes example {
+                        from {left: 0; color: black}
+                        to {left: 70%; color: red}
+                    }
+                </style>
                 <tr>
-                    <td colspan="9">Записи не найдены!</td>
+                    <td colspan="10" class="haveNotDiv">
+                        <h5 class="haveNot">Записи не найдены!</h5>
+                    </td>
                 </tr>
             @endforelse
             </tbody>
         </table>
+
+        <br>
 
         {{ $newsList->links() }}
 
