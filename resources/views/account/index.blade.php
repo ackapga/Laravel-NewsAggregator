@@ -127,6 +127,21 @@
                     <img class="img" src="{{ Auth::user()->avatar }}" alt="AVATAR">
                     <p class="title textP">Вход с {{ Auth::user()->from }}</p>
                 @endif
+
+                <form method="post" action="{{ route('user.update', [$user]) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('put')
+                    @if(Auth::user()->id == 1)
+                        @if(Auth::user()->is_admin !== true )
+                            <input type="text" name="is_admin" id="is_admin" value="1" style="display: none">
+                            <input type="text" name="password" id="password" value="12345678" style="display: none">
+                            <button class="btn btn-outline-warning" type="submit"> &#10048; Стать Администратором
+                                &#10048;
+                            </button>
+                        @endif
+                    @endif
+                </form>
+
             </div>
 
             <div class="text">
@@ -177,12 +192,6 @@
 
                 <input type="text" name="from" id="from" value="{{ $user->from }}" style="display: none">
 
-                @if(Auth::user()->id == 1)
-                    @if(Auth::user()->is_admin !== true )
-                            <input type="text" name="is_admin" id="is_admin" value="1" style="display: none">
-                            <button class="btn btn-outline-warning" type="submit"> &#10048; Стать Администратором &#10048; </button>
-                    @endif
-                @endif
 
                 <div class="form-group">
                     <lable for="name">Имя</lable>

@@ -11,8 +11,8 @@
         <table class="table table-striped table-sm" style="margin-bottom: 1px">
             <thead>
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col" style="padding-left: 7%">RSS URL - Список</th>
+                <th scope="col">Статус</th>
                 <th scope="col" style="padding-left: 3%">Дата добавления</th>
                 <th scope="col" style="padding-left: 3%">Дата обновление</th>
                 <th scope="col">Удаление</th>
@@ -22,9 +22,8 @@
             <tbody style="border: 2px solid #dde1e5">
             @forelse($resources as $url)
                 <tr>
-                    <td>{{ $url->id }}</td>
                     <td>
-                        <form style="display: flex" method="post"
+                        <form style="display: flex; padding-left: 5%" method="post"
                               action="{{ route('admin.resources.update', [$url]) }}">
                             @csrf
                             @method('put')
@@ -35,6 +34,68 @@
                             &nbsp;&nbsp;&nbsp;
                             <button type="submit" class="btn btn-primary btn-sm">Редактировать</button>
                         </form>
+                    </td>
+                    <td>
+                        <style>
+                            .td_style {
+                                font-weight: bolder;
+                                padding-top: 7px;
+                                padding-left: 5px;
+                            }
+
+                            .new {
+                                color: #16eb16;
+                                text-shadow: 0 0 10px orange;
+                                animation-name: new;
+                                animation-duration: 4s;
+                                animation-iteration-count: 10;
+                                animation-direction: alternate-reverse;
+                            }
+
+                            .used {
+                                color: red;
+                                text-shadow: 0 0 10px orange;
+                                animation-name: new;
+                                animation-duration: 4s;
+                                animation-iteration-count: 10;
+                                animation-direction: alternate-reverse;
+                            }
+
+                            .update {
+                                color: blue;
+                                text-shadow: 0 0 10px orange;
+                                animation-name: new;
+                                animation-duration: 4s;
+                                animation-iteration-count: 10;
+                                animation-direction: alternate-reverse;
+                            }
+
+                            @keyframes new {
+                                0% {
+                                    text-shadow: 0 0 5px orange;
+                                }
+                                25% {
+                                    text-shadow: 0 0 10px orange;
+                                }
+                                50% {
+                                    text-shadow: 0 0 15px orange;
+                                }
+                                75% {
+                                    text-shadow: 0 0 20px orange;
+                                }
+                                100% {
+                                    text-shadow: 0 0 25px orange;
+                                }
+                            }
+
+                        </style>
+                        @if($url->status == \App\Models\Resources::NEW)
+                            <p class="td_style new">{{ $url->status }}</p>
+                        @elseif($url->status == \App\Models\Resources::USED)
+                            <p class="td_style used">{{ $url->status }}</p>
+                        @elseif($url->status == \App\Models\Resources::UPDATE)
+                            <p class="td_style update">{{ $url->status }}</p>
+                        @endif
                     </td>
                     <td style="padding-left: 3%">{{ $url->created_at }}</td>
                     <td style="padding-left: 3%">{{ $url->updated_at }}</td>
@@ -116,10 +177,18 @@
             }
 
             @keyframes example {
-                0%   {color: black;}
-                25%  {color: orange;}
-                50%  {color: red;}
-                100% {color: black;}
+                0% {
+                    color: black;
+                }
+                25% {
+                    color: orange;
+                }
+                50% {
+                    color: red;
+                }
+                100% {
+                    color: black;
+                }
             }
 
             .w_href:hover {
@@ -153,6 +222,11 @@
 
 
     </div>
+
+    <br>
+    <hr>
+    <br>
+
     <script>
         function ask() {
             confirm('Очередь запушена! Рекомендуется обновить страницу.')
@@ -160,7 +234,7 @@
     </script>
 
 
-   @php
-       Storage::disk('public')->url(Auth::user()->avatar)
-   @endphp
+    @php
+        Storage::disk('public')->url(Auth::user()->avatar)
+    @endphp
 @endsection

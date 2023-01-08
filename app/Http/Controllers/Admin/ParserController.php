@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\JobNewsParsing;
+use App\Models\Resources;
 use App\Queries\ResourcesQueryBuilder;
 use Illuminate\Http\RedirectResponse;
 
@@ -26,6 +27,7 @@ class ParserController extends Controller
             foreach ($urls as $url) {
                 \dispatch(new JobNewsParsing($url)); // Можно и так: JobNewsParsing::dispatch($url);
             }
+            Resources::query()->update(['status' => Resources::USED]);
             return redirect()->route('admin.resources.index')
                 ->with('success', __('messages.admin.resources.parser.success'));
         }

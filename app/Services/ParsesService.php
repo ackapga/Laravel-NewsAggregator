@@ -126,7 +126,7 @@ class ParsesService implements Parser
                 'author' => $one['author'],
                 'status' => News::DRAFT,
                 'image' => $image,
-                'description' => $one['description'] . ' ' . ' <a href="' . $one['link'] . '" target="_blank">' . 'Ссылка на статью' . '</a>',
+                'description' => $one['description'] . "<br>" . ' <a href="' . $one['link'] . '" target="_blank">' . 'Ссылка на статью' . '</a>',
                 'created_at' => now(),
             ];
 
