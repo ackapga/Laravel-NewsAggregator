@@ -42,26 +42,14 @@ class UserController extends Controller
     /**
      * @param EditRequest $request
      * @param User $user
-     * @param UploadService $service
      * @return RedirectResponse
      */
     public function update(
         EditRequest   $request,
         User          $user,
-        UploadService $service
     ): RedirectResponse
     {
-        $validated = $request->validated();
-
-        if ($request->hasFile('avatar')) {
-            $validated['avatar'] = $service->uploadUserImage($request->file('avatar'));
-        }
-
-        $user = $user->fill($validated);
-
-        if ($user->fill([
-            'password' => Hash::make($request['password'])
-        ])->save()) {
+        if ($user->fill($request->validated())->save()) {
             return redirect()->route('admin.users.index')
                 ->with('success', __('messages.admin.users.update.success'));
         }

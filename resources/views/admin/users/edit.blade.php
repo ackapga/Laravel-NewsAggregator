@@ -60,6 +60,8 @@
                 @error('name') <span style="color: red">{{ $message }}</span> @enderror
             </div>
 
+            <input type="text" style="display: none" name="password" id="password" value="{{ $user->password }}">
+
             <div style="display: none">
                 <input type="text" name="from" id="from" value="{{ $user->from }}">
             </div>
