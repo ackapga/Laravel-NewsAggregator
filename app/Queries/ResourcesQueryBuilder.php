@@ -31,9 +31,10 @@ final class ResourcesQueryBuilder
      */
     public function update(array $date): int
     {
+
        return $this->model
            ->where('id', '=', $date['id'])
-           ->update(['urlName' => $date['urlName']]);
+           ->update(['urlName' => $date['urlName'], 'status' => Resources::UPDATE]);
     }
 
     public function delete($id)

@@ -3,8 +3,9 @@
 @section('content')
 
     <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Список Новостей</h1>
+        class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2 class="h2">Список Новостей</h2>
+        <p style="margin-left: 15%; padding: 10px; background-color: #0d6efd; color: white; border-radius: 15px">Общее количество новостей: {{ $number }}</p>
     </div>
 
     <a href="{{ route('admin.news.create') }}" class="btn btn-primary">Добавить Новость</a><br><br>

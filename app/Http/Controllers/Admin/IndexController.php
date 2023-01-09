@@ -12,7 +12,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -20,6 +19,7 @@ class IndexController extends Controller
     /**
      * @param ResourcesQueryBuilder $resources
      * @param Job $job
+     * @param JobFailed $jobFailed
      * @return View|Factory|Application
      */
     public function index(

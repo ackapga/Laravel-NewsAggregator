@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\IndexController as IndexControllerAdmin;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\JobFailController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\NoteController;
 use App\Http\Controllers\Admin\ParserController;
 use App\Http\Controllers\Admin\QueueWork;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -54,6 +55,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/job', JobController::class)->name('job');
             Route::get('/jobFail', JobFailController::class)->name('jobFail');
             Route::resource('resources', IndexControllerAdmin::class);
+            Route::resource('notes', NoteController::class);
             Route::resource('queue', QueueWork::class);
             Route::resource('categories', AdminCategoryController::class);
             Route::resource('news', AdminNewsController::class);

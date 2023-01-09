@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Note;
 use App\Queries\NewsQueryBuilder;
 use App\Services\Contracts\Parser;
 use App\Services\Contracts\Social;
@@ -39,6 +40,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrapFive();
+
+        view()->composer('*',function($view) {
+            $view->with('notes', Note::query()->get());
+        });
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
             return (new MailMessage)
