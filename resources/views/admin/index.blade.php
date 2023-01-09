@@ -237,4 +237,5 @@
     @php
         Storage::disk('public')->url(Auth::user()->avatar)
     @endphp
+
 @endsection
