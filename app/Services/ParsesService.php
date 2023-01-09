@@ -124,7 +124,7 @@ class ParsesService implements Parser
                 'category_id' => $category_id,
                 'title' => $one['title'],
                 'author' => $one['author'],
-                'status' => News::DRAFT,
+                'status' => News::ACTIVE,
                 'image' => $image,
                 'description' => $one['description'] . "<br>" . ' <a href="' . $one['link'] . '" target="_blank">' . 'Ссылка на статью' . '</a>',
                 'created_at' => now(),
