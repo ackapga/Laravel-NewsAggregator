@@ -21,7 +21,8 @@ class CategoryController extends Controller
     public function index(CategoriesQueryBuilder $builder): View|Factory|Application
     {
         return view('admin.categories.index', [
-            'categories' => $builder->getCategories()
+            'categories' => $builder->getCategories(),
+            'number' => count($builder->getCategories()),
         ]);
     }
 

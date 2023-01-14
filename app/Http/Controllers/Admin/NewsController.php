@@ -24,7 +24,7 @@ class NewsController extends Controller
     {
         return view('admin.news.index', [
             'newsList' => $news->getNews(),
-            'number' => count($news->getNews())
+            'number' => count($news->getNews()),
         ]);
     }
 
