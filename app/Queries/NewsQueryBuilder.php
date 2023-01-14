@@ -18,13 +18,13 @@ final class NewsQueryBuilder
         $this->model = News::query();
     }
 
-    public function getNews(): Collection|LengthAwarePaginator
+    public function getNews(): Collection
     {
         return $this->model
             ->orderBy('id', 'desc')
             ->orderBy('created_at', 'desc')
             ->with('category')
-            ->paginate(config('pagination.admin.news'));
+            ->get();
     }
 
     public function getNewsForList(): Collection|LengthAwarePaginator
