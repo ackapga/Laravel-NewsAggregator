@@ -90,7 +90,7 @@
         }
 
         .menu {
-            position: fixed;
+            position: absolute;
             right: 7%;
             top: 13%;
             padding: 10px;

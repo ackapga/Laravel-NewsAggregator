@@ -20,6 +20,7 @@
 
             <p>Email: {{ $user->email }}</p>
             <p>Дата регистраций: {{ $user->created_at }}</p>
+
             <style>
                 .img {
                     width: 20vh;
@@ -48,9 +49,12 @@
             <div class="form-group">
                 <lable for="is_admin">Права на Администратора</lable>
                 <select class="form-control" name="is_admin" id="is_admin">
-                    <option>{{ $user->is_admin }}</option>
-                    <option value="1">1</option>
-                    <option value="0">0</option>
+                    <option value="{{ $user->is_admin }}" style="color: #b9b9b9">
+                        @if($user->is_admin == 1)Администратор @endif
+                        @if($user->is_admin == 0)Пользователь @endif
+                    </option>
+                    <option value="1" style="color: green">Сделать Администратором</option>
+                    <option value="0" style="color: red">Убрать права</option>
                 </select>
             </div>
 

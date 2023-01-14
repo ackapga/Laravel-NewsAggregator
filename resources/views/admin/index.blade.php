@@ -1,6 +1,70 @@
 @extends('layouts.admin')
 @section('content')
 
+    <style>
+        .haveNotDiv {
+            overflow-x: hidden;
+        }
+
+        .haveNot {
+            font-weight: bold;
+            left: 10%;
+            position: relative;
+            animation: haveNot 10s infinite alternate;
+        }
+
+        @keyframes haveNot {
+            from {
+                left: 10%;
+                color: black
+            }
+            to {
+                left: 75%;
+                color: red
+            }
+        }
+
+        .display {
+            display: flex;
+        }
+
+        .pr {
+            padding-right: 20px;
+        }
+
+        .pr2 {
+            padding-right: 36px;
+        }
+
+        .w_href {
+            color: black;
+            text-decoration: none;
+            animation-name: example;
+            animation-duration: 10s;
+            animation-direction: reverse;
+        }
+
+        @keyframes example {
+            0% {
+                color: black;
+            }
+            25% {
+                color: orange;
+            }
+            50% {
+                color: red;
+            }
+            100% {
+                color: black;
+            }
+        }
+
+        .w_href:hover {
+            color: white;
+            text-shadow: 0px 0px 2px black;
+        }
+    </style>
+
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h4 class="h4">Панель управление</h4>
@@ -108,9 +172,9 @@
                     </th>
                 </tr>
             @empty
-                <tr>
-                    <td colspan="5">URL RSS - Записей нет!</td>
-                </tr>
+                <td colspan="5" class="haveNotDiv">
+                    <div class="haveNot">URL RSS - Записей нет!</div>
+                </td>
             @endforelse
             </tbody>
         </table>
@@ -154,48 +218,6 @@
 
     <div style="display: flex; flex-direction: column">
         <h5>Мониторинг очередей:</h5>
-
-        <style>
-            .display {
-                display: flex;
-            }
-
-            .pr {
-                padding-right: 20px;
-            }
-
-            .pr2 {
-                padding-right: 36px;
-            }
-
-            .w_href {
-                color: black;
-                text-decoration: none;
-                animation-name: example;
-                animation-duration: 10s;
-                animation-direction: reverse;
-            }
-
-            @keyframes example {
-                0% {
-                    color: black;
-                }
-                25% {
-                    color: orange;
-                }
-                50% {
-                    color: red;
-                }
-                100% {
-                    color: black;
-                }
-            }
-
-            .w_href:hover {
-                color: white;
-                text-shadow: 0px 0px 2px black;
-            }
-        </style>
 
         <div
             style="border: 1px solid grey; padding: 10px; display: block; white-space: nowrap; overflow: hidden; margin-bottom: 3px; overflow-x: auto">

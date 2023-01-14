@@ -3,13 +3,16 @@
 @section('content')
 
     <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Список Пользователей</h1>
+        <p style="margin-left: 15%; padding: 10px; background-color: #0d6efd; color: white; border-radius: 15px">Общее
+            количество категорий: {{ $number }}</p>
+        <div style="position: absolute; width: 80%">
+            @include('inc.message')
+        </div>
     </div>
 
     <div class="table-responsive">
-
-        @include('inc.message')
 
         <table class="table table-striped table-sm">
             <thead>
@@ -26,8 +29,8 @@
             </thead>
             <tbody>
 
-            @forelse($users as $user)
-                <tr>
+            @foreach($users as $user)
+                <tr style="border-left: 1px solid #dde1e5; border-right: 1px solid #dde1e5">
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->from }}</td>
                     <td>{{ $user->is_admin }}</td>
@@ -45,14 +48,7 @@
                         </a>
                     </td>
                 </tr>
-
-            @empty
-
-                <tr>
-                    <td colspan="8">Записи не найдены!</td>
-                </tr>
-
-            @endforelse
+            @endforeach
 
             </tbody>
         </table>
