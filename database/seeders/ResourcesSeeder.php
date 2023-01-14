@@ -33,7 +33,7 @@ class ResourcesSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'urlName' => 'https://news.rambler.ru/rss/photo',
+                'urlName' => 'https://news.rambler.ru/rss/tech',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
