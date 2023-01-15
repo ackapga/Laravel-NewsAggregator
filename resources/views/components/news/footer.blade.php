@@ -11,13 +11,14 @@
 
         <hr>
 
-        <div class="navbar" >
+        <div class="navbar">
             <div class="container float-end mb-1">
                 <h4>
                     News aggregator &copy; <?php echo date('Y') ?>
                 </h4>
                 <button type="button" class="btn btn-warning" data-bs-toggle="collapse" data-bs-target="#footer"
-                        aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation" style="color: white">
+                        aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"
+                        style="color: white">
                     <span>Информация &#9776;</span>
                 </button>
             </div>
@@ -39,10 +40,10 @@
                 <div class="col-sm-4 offset-md-1 py-4">
                     <h4>Напиши мне:</h4>
                     <ul class="list-unstyled">
-                        <li><a href="mailto:ackapga@gmailcom" style="text-decoration: none; color: grey" target="_blank">Email me: ackapga@gmail.com</a></li>
-                        <li><a href="https://www.instagram.com/ackapga"  style="text-decoration: none; color: gray" target="_blank">Instagram: @ackapga</a></li>
+                        <li><a href="mailto:ackapga@gmailcom" style="text-decoration: none; color: grey" target="_blank">Email: ackapga@gmail.com</a></li>
+                        <li><a href="https://github.com/ackapga" style="text-decoration: none; color: gray" target="_blank">GitHub: @ackapga</a></li>
                         <li><a href="https://t.me/ackapga" style="text-decoration: none; color: gray" target="_blank">Telegram: @ackapga</a></li>
-
+                        <li><a href="https://www.instagram.com/ackapga" style="text-decoration: none; color: gray" target="_blank">Instagram: @ackapga</a></li>
                     </ul>
                 </div>
             </div>

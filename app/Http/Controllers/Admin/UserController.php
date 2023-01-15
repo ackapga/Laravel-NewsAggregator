@@ -25,6 +25,7 @@ class UserController extends Controller
     {
         return view('admin.users.index', [
             'users' => $builder->getUsers(),
+            'number' => count($builder->getUsers()),
         ]);
     }
 

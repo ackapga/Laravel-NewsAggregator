@@ -122,12 +122,14 @@
                         <h4 class="text-muted">Напиши мне:</h4>
                         <ul class="list-unstyled">
                             <li><a href="mailto:ackapga@gmailcom" style="text-decoration: none; color: grey"
-                                   target="_blank">Email me: ackapga@gmail.com</a></li>
+                                   target="_blank">Email: ackapga@gmail.com</a></li>
+                            <li><a href="https://github.com/ackapga" style="text-decoration: none; color: gray"
+                                   target="_blank">GitHub: @ackapga</a></li>
+                            <li><a href="https://t.me/ackapga" style="text-decoration: none; color: gray"
+                                   target="_blank">Telegram: @ackapga</a></li>
                             <li><a href="https://www.instagram.com/ackapga"
                                    style="text-decoration: none; color: gray" target="_blank">Instagram:
                                     @ackapga</a></li>
-                            <li><a href="https://t.me/ackapga" style="text-decoration: none; color: gray"
-                                   target="_blank">Telegram: @ackapga</a></li>
                         </ul>
                     </div>
 

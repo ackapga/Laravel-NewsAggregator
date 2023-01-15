@@ -20,19 +20,19 @@ class QueueWork extends Controller
     }
 
     /**
-     * @return string
-     */
-    public function create(): string
-    {
-        return Artisan::call('queue:work');
-    }
-
-    /**
      * @return bool|string
      */
     public function startQueueOnes(): bool|string
     {
         return Artisan::call('queue:work --stop-when-empty');
+    }
+
+    /**
+     * @return string
+     */
+    public function create(): string
+    {
+        return Artisan::call('queue:work');
     }
 
 }

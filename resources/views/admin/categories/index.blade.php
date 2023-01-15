@@ -3,15 +3,18 @@
 @section('content')
 
     <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Список Категорий</h1>
+        class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2 class="h2">Список Категорий</h2>
+        <p style="margin-left: 15%; padding: 10px; background-color: #0d6efd; color: white; border-radius: 15px">Общее
+            количество категорий: {{ $number }}</p>
+        <div style="position: absolute; width: 80%">
+            @include('inc.message')
+        </div>
     </div>
 
     <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Добавить Категорию</a><br><br>
 
     <div class="table-responsive">
-
-        @include('inc.message')
 
         <table class="table table-striped table-sm">
             <thead>
@@ -25,7 +28,7 @@
             </thead>
             <tbody>
             @forelse($categories as $category)
-                <tr>
+                <tr style="border-left: 1px solid #dde1e5; border-right: 1px solid #dde1e5">
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->title }}</td>
                     <td>{{ $category->created_at }}</td>
@@ -45,7 +48,7 @@
                 <style>
                     .haveNotDiv {
                         border: 1px solid #dde1e5;
-
+                        overflow-x: hidden;
                     }
 
                     .haveNot {
@@ -56,8 +59,14 @@
                     }
 
                     @keyframes example {
-                        from {left: 0; color: black}
-                        to {left: 70%; color: red}
+                        from {
+                            left: 10%;
+                            color: black
+                        }
+                        to {
+                            left: 75%;
+                            color: red
+                        }
                     }
                 </style>
                 <tr>
@@ -70,8 +79,6 @@
         </table>
 
         <br>
-
-        {{ $categories->links() }}
 
     </div>
 
