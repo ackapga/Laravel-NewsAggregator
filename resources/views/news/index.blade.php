@@ -43,13 +43,31 @@
             </div>
 
         @empty
-            <h1>Записей нет!</h1>
+            <style>
+                .haveNot {
+                    padding-top: 1%;
+                    font-weight: bold;
+                    position: relative;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    animation: example 7s infinite alternate;
+                }
+
+                @keyframes example {
+                    from {
+                        left: 10%;
+                        color: black
+                    }
+                    to {
+                        left: 75%;
+                        color: #940404
+                    }
+                }
+            </style>
+            <h2 class="haveNot">Новостей нет!</h2>
         @endforelse
     </div>
-
     <br>
     <hr>
-
     {{ $newsList->links() }}
-
 @endsection

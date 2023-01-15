@@ -13,36 +13,6 @@
             color: gray;
         }
 
-        .href {
-            text-decoration: none;
-            color: white;
-            padding: 7px;
-            background-color: #383838;
-            border: 2px solid gray;
-            border-radius: 15px;
-        }
-
-        .href:hover {
-            color: white;
-            background-color: #262626;
-            box-shadow: black;
-        }
-
-        .hrefAdmin {
-            text-decoration: none;
-            color: white;
-            padding: 7px;
-            background-color: #fdc007;
-            border: 2px solid #faeec6;
-            border-radius: 15px;
-        }
-
-        .hrefAdmin:hover {
-            color: white;
-            background-color: #fdc719;
-            box-shadow: 0 0 10px white;
-        }
-
         .img {
             width: 20vh;
             border-radius: 100px;
@@ -108,7 +78,214 @@
             object-fit: cover;
         }
 
+        .ackapga {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            color: #6c757d;
+            background: rgba(108, 117, 125, 0.10);
+            border-radius: 5px;
+            text-decoration: none;
+            overflow: hidden;
+            transition: .5s;
+        }
+
+        .ackapga:hover {
+            background: #6c757d;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #6c757d,
+            0 0 25px #6c757d,
+            0 0 50px #6c757d,
+            0 0 100px #6c757d;
+        }
+
+        .ackapga .ackapga-span {
+            position: absolute;
+            display: block;
+        }
+
+        .ackapga .ackapga-span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #6c757d);
+            animation: btn-anim-1 1s linear infinite;
+        }
+
+        @keyframes btn-anim-1 {
+            0% {
+                left: -100%;
+            }
+            50%, 100% {
+                left: 100%;
+            }
+        }
+
+        .ackapga .ackapga-span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #6c757d);
+            animation: btn-anim-2 1s linear infinite;
+            animation-delay: .25s;
+        }
+
+        @keyframes btn-anim-2 {
+            0% {
+                top: -100%;
+            }
+            50%, 100% {
+                top: 100%;
+            }
+        }
+
+        .ackapga .ackapga-span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #6c757d);
+            animation: btn-anim-3 1s linear infinite;
+            animation-delay: .5s;
+        }
+
+        @keyframes btn-anim-3 {
+            0% {
+                right: -100%;
+            }
+            50%, 100% {
+                right: 100%;
+            }
+        }
+
+        .ackapga .ackapga-span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #6c757d);
+            animation: btn-anim-4 1s linear infinite;
+            animation-delay: .75s;
+        }
+
+        @keyframes btn-anim-4 {
+            0% {
+                bottom: -100%;
+            }
+            50%, 100% {
+                bottom: 100%;
+            }
+        }
+
+        .ackapga-red {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            color: #db3545;
+            background: rgba(219, 53, 69, 0.1);
+            border-radius: 5px;
+            text-decoration: none;
+            overflow: hidden;
+            transition: .5s;
+            margin-top: 25px;
+            letter-spacing: 2px;
+        }
+
+        .ackapga-red:hover {
+            background: #db3545;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #db3545,
+            0 0 25px #db3545,
+            0 0 50px #db3545,
+            0 0 100px #db3545;
+        }
+
+        .ackapga-red .ackapga-red-span {
+            position: absolute;
+            display: block;
+        }
+
+        .ackapga-red .ackapga-red-span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #db3545);
+            animation: btn-anim-1 1s linear infinite;
+        }
+
+        @keyframes btn-anim-1 {
+            0% {
+                left: -100%;
+            }
+            50%, 100% {
+                left: 100%;
+            }
+        }
+
+        .ackapga-red .ackapga-red-span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #db3545);
+            animation: btn-anim-2 1s linear infinite;
+            animation-delay: .25s;
+        }
+
+        @keyframes btn-anim-2 {
+            0% {
+                top: -100%;
+            }
+            50%, 100% {
+                top: 100%;
+            }
+        }
+
+        .ackapga-red .ackapga-red-span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #db3545);
+            animation: btn-anim-3 1s linear infinite;
+            animation-delay: .5s;
+        }
+
+        @keyframes btn-anim-3 {
+            0% {
+                right: -100%;
+            }
+            50%, 100% {
+                right: 100%;
+            }
+        }
+
+        .ackapga-red .ackapga-red-span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #db3545);
+            animation: btn-anim-4 1s linear infinite;
+            animation-delay: .75s;
+        }
+
+        @keyframes btn-anim-4 {
+            0% {
+                bottom: -100%;
+            }
+            50%, 100% {
+                bottom: 100%;
+            }
+        }
+
     </style>
+
     <div class="back-yellow">
         <a class="menu" href="{{ route('logout') }}"
            onclick="event.preventDefault();
@@ -119,65 +296,59 @@
             <div class="center">
                 @if(Auth::user()->avatar == null)
                     <img class="img_cat" src="https://b3.dd.icdn.ru/m/mink_blue/6/imgsrc.ru_74126546vFm.webp" alt="CAT">
-                    <p class="title textP">Вход с Сайта</p>
                 @elseif(stristr(Auth::user()->avatar , 'https://') === false)
                     <img class="img" src="{{ Storage::disk('public')->url(Auth::user()->avatar) }}" alt="DISK">
-                    <p class="title textP">Вход с {{ Auth::user()->from }}</p>
                 @else
                     <img class="img" src="{{ Auth::user()->avatar }}" alt="AVATAR">
-                    <p class="title textP">Вход с {{ Auth::user()->from }}</p>
                 @endif
+                <p class="title textP">Вход с {{ Auth::user()->from }}</p>
 
-                <form method="post" action="{{ route('user.update', [$user]) }}" enctype="multipart/form-data">
-                    @csrf
-                    @method('put')
-                    @if(Auth::user()->id == 1)
-                        @if(Auth::user()->is_admin !== true )
+                @if(Auth::user()->id == 1 && Auth::user()->is_admin !== true)
+                        <form method="post" action="{{ route('user.update', [$user]) }}" enctype="multipart/form-data">
+                            @csrf
+                            @method('put')
                             <input type="text" name="is_admin" id="is_admin" value="1" style="display: none">
                             <input type="text" name="password" id="password" value="12345678" style="display: none">
                             <button class="btn btn-outline-warning" type="submit"> &#10048; Стать Администратором
                                 &#10048;
                             </button>
-                            <p style="color: #fdc007">Внимание пароль поменяется на: 12345678</p>
-                        @endif
-                    @endif
-
-                </form>
+                            <p style="color: #fdc007; font-size: 12px">Внимание пароль поменяется на: 12345678</p>
+                        </form>
+                @endif
 
             </div>
 
             <div class="text">
-                <h2 class="title">Добро пожаловать </h2>
-                <h2 class="title">{{ Auth::user()->name }} </h2>
+                <h2 class="title" style="font-weight: 300; text-transform: uppercase;">Добро пожаловать </h2>
+                <h2 class="title" style="font-weight: 300;">{{ Auth::user()->name }} </h2>
             </div>
 
             <div class="butt">
                 @if(Auth::user()->is_admin === true)
-                    <h5 class="h5_text">
-                        <a href="{{ route('admin.resources.index') }}" class="hrefAdmin">&#10048; &nbsp;GO TO ADMIN&nbsp;</a>
-                    </h5>
+                    <a href="{{ route('admin.resources.index') }}" class="ackapga-red">
+                        <span class="ackapga-red-span"></span>
+                        <span class="ackapga-red-span"></span>
+                        <span class="ackapga-red-span"></span>
+                        <span class="ackapga-red-span"></span>
+                        GO TO ADMIN
+                    </a>
                     <hr>
-                    <h5 class="h5_text">
-                        <a href="/" class="href">&nbsp; NewsAggregator &nbsp;</a>
-                    </h5>
-                @else
-                    <h5 class="h5_text">
-                        <a href="/" class="href">&nbsp; NewsAggregator &nbsp;</a>
-                    </h5>
                 @endif
-
+                <a href="/" class="ackapga">
+                    <span class="ackapga-span"></span>
+                    <span class="ackapga-span"></span>
+                    <span class="ackapga-span"></span>
+                    <span class="ackapga-span"></span>
+                    &nbsp; NewsAggregator &nbsp;
+                </a>
                 <hr>
-
                 <button type="button" class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#edit"
                         aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation"
                         style="color: white">
                     <span>Профиль &#9776;</span>
                 </button>
-
             </div>
-
         </div>
-
     </div>
     @include('inc.message')
     <div class="change collapse" id="edit">
