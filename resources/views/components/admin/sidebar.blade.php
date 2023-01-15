@@ -45,7 +45,7 @@
             .notes {
                 display: flex;
                 justify-content: space-between;
-                margin-right: 10%
+                margin-right: 10%;
             }
 
             .updateNotes {
@@ -84,18 +84,16 @@
                         {{ $note->title }}
                     </a>
 
-                    <div style="display: flex">
+                    <div style="display: flex; padding-top: 3%">
                         <a href="{{ route('admin.notes.edit', [$note->id]) }}">
                             <span data-feather="edit" class="updateNotes"></span></a>
 
                         <form method="post" action={{ route('admin.notes.destroy', [$note->id]) }}>
                             @csrf
                             @method('DELETE')
-                            <button style="border: none; background: none" onclick="deleteAsk()">
+                            <button style="border: none; background: none" onclick="deleteInfo()">
                                 <span data-feather="trash-2" class="deleteNotes"></span>
                             </button>
-
-
                         </form>
 
                     </div>
@@ -110,7 +108,7 @@
 </nav>
 
 <script>
-    function deleteAsk() {
-        confirm('Вы уверены что хотите удалить заметку?.')
+    function deleteInfo() {
+        alert("Заметка успешно удалена!")
     }
 </script>

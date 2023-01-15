@@ -138,8 +138,10 @@
                             <button class="btn btn-outline-warning" type="submit"> &#10048; Стать Администратором
                                 &#10048;
                             </button>
+                            <p style="color: #fdc007">Внимание пароль поменяется на: 12345678</p>
                         @endif
                     @endif
+
                 </form>
 
             </div>
